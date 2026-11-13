@@ -45,6 +45,9 @@ h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(
 .xstripe{position:absolute;left:0;right:0;bottom:0;height:8px;background:repeating-linear-gradient(90deg,#C8102E 0 40px,#E5BC44 40px 48px,#1E6B3A 48px 88px,#E5BC44 88px 96px)}
 #panel::before{content:'';position:absolute;left:18px;right:18px;top:-1px;height:4px;border-radius:2px;background:repeating-linear-gradient(90deg,#C8102E 0 24px,#E5BC44 24px 30px,#2f8a4f 30px 54px,#E5BC44 54px 60px)}
 #s-intro .in{position:relative;z-index:1}
+#alert{position:fixed;top:clamp(54px,9vh,90px);left:0;right:0;text-align:center;z-index:16;font-family:'VT323',monospace;font-size:clamp(26px,4.4vw,46px);color:#ff5a6a;text-shadow:2px 2px 0 rgba(0,229,255,.6),0 0 18px rgba(255,40,60,.6);opacity:0;pointer-events:none;transition:opacity .6s}
+#alert.on{opacity:1;animation:gl 1.4s steps(1) infinite}
+#dd-parranda{filter:drop-shadow(0 0 5px rgba(255,214,120,.9)) drop-shadow(0 0 14px rgba(255,190,80,.5))}
 /* hud */
 #hud{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;z-index:20;pointer-events:none;opacity:0;transition:opacity 1s}
 #hud.on{opacity:1}
@@ -297,7 +300,7 @@ h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(
     <g id="dd-attack" class="atk">
       <rect width="1024" height="612" fill="#000" opacity=".5"/>
       <rect class="redpulse" width="1024" height="612" fill="#b3001b" opacity=".22"/>
-      <g class="glitch"><text x="514" y="72" text-anchor="middle" font-family="VT323" font-size="34" fill="#00e5ff" opacity=".6">⚠ SISTEMA COMPROMETIDO</text><text x="512" y="70" text-anchor="middle" font-family="VT323" font-size="34" fill="#ff5a6a">⚠ SISTEMA COMPROMETIDO</text></g>
+      <g class="glitch" display="none"><text x="514" y="72" text-anchor="middle" font-family="VT323" font-size="34" fill="#00e5ff" opacity=".6">⚠ SISTEMA COMPROMETIDO</text><text x="512" y="70" text-anchor="middle" font-family="VT323" font-size="34" fill="#ff5a6a">⚠ SISTEMA COMPROMETIDO</text></g>
     </g>
     <defs><radialGradient id="dd-domeG" cx=".5" cy=".9" r=".8"><stop offset="0" stop-color="#7fd4ff" stop-opacity=".05"/><stop offset=".8" stop-color="#7fd4ff" stop-opacity=".22"/><stop offset="1" stop-color="#bfeaff" stop-opacity=".45"/></radialGradient></defs>
     <path id="dd-dome" d="M140,612 C140,250 360,40 520,40 C680,40 900,250 900,612Z" fill="url(#dd-domeG)" stroke="#9fe0ff" stroke-width="3" opacity="0" filter="url(#dd-glow)"/>
@@ -322,7 +325,7 @@ h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(
       <ellipse cx="0" cy="0" rx="16" ry="34" fill="#2f7ad1" stroke="#1d4f8f" stroke-width="2"/>
       <path d="M0,-18 L-12,4 M0,-18 L12,4" stroke="#f4eee2" stroke-width="5" stroke-linecap="round"/>
     </g>
-    <g id="dd-parranda" transform="translate(-800,0)"></g>
+    <g id="dd-parranda" transform="translate(-1100,0)"></g>
   </svg></div>
   <div class="fog"></div>
 </section>
@@ -383,6 +386,7 @@ h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(
 <canvas id="fx"></canvas>
 <div class="noise" id="noise2"></div>
 <div id="flash"></div>
+<div id="alert">⚠ SISTEMA COMPROMETIDO</div>
 <div id="title"></div>
 <header id="hud"><div id="dots"><i></i><i></i><i></i><i></i><i></i></div><button id="snd" aria-label="Sonido">🔊</button></header>
 <div id="panel"><div id="ptext"></div><div id="pactions"></div></div>
@@ -402,7 +406,7 @@ h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(
     <div class="face front"><div class="seal">✦</div><p class="for">Un regalo para</p><h2 id="g-name"></h2><p class="tap">Toca para abrir</p></div>
     <div class="face back"><div class="g-bar" id="g-bar"></div><p class="g-msg" id="g-msg"></p><p class="g-call">Gracias por defender la Navidad del DDEC. El Reino de lo Hecho en Puerto Rico está abierto todo el año.</p><p class="g-sign">Feliz Navidad · OTI · DDEC</p></div>
   </div></div>
-  <div class="g-foot"><p>Creado por la Oficina de Tecnologías de Información del DDEC: poquitos, sin presupuesto de decoración y con el corazón grande. Aquí las decoraciones no se compran: se programan.</p><p style="font-size:12px;opacity:.6">Inspirado en «El cascanueces y el rey de los ratones», de E. T. A. Hoffmann (1816), y el ballet de Chaikovski.</p><button class="btn" id="restart">Volver a empezar</button></div>
+  <div class="g-foot"><p>Creado por la Oficina de Tecnologías de Información del DDEC: poquitos, sin presupuesto de decoración y con el espíritu navideño en FULL. Aquí las decoraciones no se compran: se programan.</p><p style="font-size:12px;opacity:.6">Inspirado en «El cascanueces y el rey de los ratones», de E. T. A. Hoffmann (1816), y el ballet de Chaikovski.</p><button class="btn" id="restart">Volver a empezar</button></div>
 </div>
 </div>
 
@@ -539,7 +543,7 @@ function buildArt(){
   for(let y=40,i=0;y<490;y+=22,i++)el('circle',{cx:907,cy:y,r:3.2,fill:cols[i%4],class:'bulb',filter:'url(#dd-glow)',style:`animation-delay:${rnd(0,2.4).toFixed(2)}s`},bu);
   const pl=$('#dd-palms');[[[265,520],[276,150]],[[122,510],[132,215]],[[938,500],[934,372]],[[188,495],[190,370]]].forEach(([a,b])=>{const n=Math.round((a[1]-b[1])/15);for(let i=0;i<=n;i++){const t=i/n;el('circle',{cx:a[0]+(b[0]-a[0])*t,cy:a[1]+(b[1]-a[1])*t,r:2.6,fill:cols[i%4],class:'palmlight',filter:'url(#dd-glow)'},pl)}});
   const lu=$('#dd-lums');for(let x=250;x<=780;x+=44){const y=588-(x-250)*.02;el('circle',{cx:x,cy:y,r:16,fill:'url(#dd-gold)',class:'lum'},lu);el('circle',{cx:x,cy:y,r:3,fill:'#fff3c4',class:'lum'},lu)}
-  const P=$('#dd-parranda');[[250,80,1,1],[300,76,0,1],[620,84,1,0],[670,78,1,1],[720,82,0,1],[770,76,1,0]].forEach(([x,h,hat,mar],i)=>{const g=el('g',{class:'pf',style:`animation-delay:${(i*.13).toFixed(2)}s`},P);figure(g,x,h,hat,mar,612,'#1b120c')});
+  const P=$('#dd-parranda');const land=innerWidth>innerHeight*1.05;(land?[[105,92,1,1],[160,86,0,1],[215,94,1,0],[810,90,1,1],[865,95,0,1],[920,86,1,0]]:[[540,80,1,1],[590,76,0,1],[640,84,1,0],[690,78,1,1],[740,82,0,1]]).forEach(([x,h,hat,mar],i)=>{const g=el('g',{class:'pf',style:`animation-delay:${(i*.13).toFixed(2)}s`},P);figure(g,x,h,hat,mar,land?580:560,'#2a170c')});
   // ratones de computadora
   const R=$('#dd-rats');for(let i=0;i<11;i++){const x=240+i*52+rnd(-12,12),y=452+rnd(-8,22);const o=el('g',{transform:`translate(${x.toFixed(0)},${y.toFixed(0)})`},R);const g=el('g',{class:'scurry',style:`animation-duration:${rnd(.7,1.4).toFixed(2)}s;animation-delay:${rnd(0,1).toFixed(2)}s`},o);
     el('path',{d:'M0,14 C10,26 22,14 30,24',stroke:'#2a2d33','stroke-width':2.5,fill:'none'},g);el('ellipse',{rx:11,ry:15,fill:'#c9ccd2',stroke:'#6d7178','stroke-width':1.5},g);el('line',{x1:0,y1:-15,x2:0,y2:-3,stroke:'#6d7178','stroke-width':1.5},g);el('circle',{cx:-4,cy:2,r:2,fill:'#ff2d3d'},g);el('circle',{cx:4,cy:2,r:2,fill:'#ff2d3d'},g)}
@@ -617,7 +621,7 @@ async function scene1(){
 const EMAILS=[{k:'ok1',label:'📧 OTI: Mantenimiento programado del sistema este sábado'},{k:'phish',label:'📧 ¡URGENTE! Reclama tu bono de Navidad aquí → ddec-bonos-navidad.xyz'},{k:'ok2',label:'📧 Recursos Humanos: Recordatorio de la fiesta de Navidad'}];
 async function scene2(){
   goTo('s45',2);fx.set('ash');await sleep(1300);
-  $('#ddec').classList.add('attack');A.glitch();const stopSq=A.every(A.squeak,500,900);A._drone=A.drone();
+  $('#ddec').classList.add('attack');$('#alert').classList.add('on');A.glitch();const stopSq=A.every(A.squeak,500,900);A._drone=A.drone();
   await sleep(1200);
   await narrate('Del fondo de los cables salió un ejército de ratones. Pero no eran ratones cualquiera: eran ratones de computadora, con el cable de rabo.');
   const k=$('#dd-king');k.setAttribute('opacity',1);A.glitch();
@@ -661,7 +665,7 @@ async function scene3(){
   A.thwack();flash(500);ch.setAttribute('opacity',0);
   if(state.stopSq)state.stopSq();$('#dd-rats').classList.add('flee');
   await tween(1200,t=>{k.setAttribute('transform',`translate(${t*80},${t*120}) rotate(${t*160} 560 500)`);k.setAttribute('opacity',1-t)});
-  $('#ddec').classList.remove('attack');$('#dd-dome').setAttribute('opacity',.25);if(A._drone)A._drone.stop(1.5);fx.set('sparkle');
+  $('#ddec').classList.remove('attack');$('#alert').classList.remove('on');$('#dd-dome').setAttribute('opacity',.25);if(A._drone)A._drone.stop(1.5);fx.set('sparkle');
   const T=A.now();[523.3,659.3,784,1046.5].forEach((f,i)=>A.bell(f,T+i*.2,2.5,.12));
   await sleep(800);
   const stopM2=A.playSeq(MEL_MARCH,{bpm:140,vol:.15,perc:true});
@@ -725,7 +729,7 @@ const rrow=(a,b,w=32)=>a+' '.repeat(Math.max(1,w-a.length-b.length))+b;
 function receiptLines(){return['      RECIBO · NAVIDAD 2026','   Oficina de Tecnologías de','     Información · DDEC','-'.repeat(32),
   rrow('Cliente',state.name.slice(0,22)),rrow('Visitante','Rey Ratón'),rrow('Estatus','expulsado'),'-'.repeat(32),
   rrow('Cascanueces','hecho en PR'),rrow('Firewall','$0.00'),rrow('Chancleta','reutilizable'),rrow('Decoraciones elaboradas','no hubo'),rrow('Creatividad digital','ilimitada'),rrow('Ahorro en decoración','100%'),rrow('Personal de OTI','poquitos'),
-  '<b>'+rrow('Corazón','GRANDE*')+'</b>','-'.repeat(32),rrow('TOTAL','$0.00'),'','* Sí, ya sabemos que es cliché.','  Pero es verdad.']}
+  '<b>'+rrow('Espíritu navideño','FULL*')+'</b>','-'.repeat(32),rrow('TOTAL','$0.00'),'','* Cargado al 100% sin gastar','  un solo peso.']}
 async function receipt(){const r=$('#receipt'),p=$('#rc-paper');p.innerHTML='';r.classList.add('on');await sleep(700);A.printer(120,.05);
   for(const line of receiptLines()){const esc=line.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/&lt;(\/?)b>/g,'<$1b>');p.innerHTML+=esc+'\n';await sleep(280)}
   r.classList.add('done');await new Promise(res=>$('#rc-btn').onclick=()=>{A.sparkle();res()});r.classList.remove('on','done')}
@@ -736,14 +740,14 @@ async function scene5(){
   $('#ddec').classList.add('gold');$('#s45').classList.add('gold');fx.set('gold');
   const T=A.now();[523.3,659.3,784,1046.5,784,659.3,523.3,784].forEach((f,i)=>A.bell(f,T+.3+i*.42,3.5,.13));A.bell(196,T+.2,6,.3);
   const stopP=A.parranda(.6);
-  const P=$('#dd-parranda');tween(7000,t=>P.setAttribute('transform',`translate(${-800+t*800},0)`),t=>1-Math.pow(1-t,3));
+  const P=$('#dd-parranda');tween(7000,t=>P.setAttribute('transform',`translate(${-1100+t*1100},0)`),t=>1-Math.pow(1-t,3));
   await sleep(2600);
   await narrate('Despertaste en el atrio con el cascanueces en las manos. ¿Fue un sueño? Quizás. Pero la chancleta seguía tirada en el piso.');
   await narrate('Afuera amanecía, y el edificio de Fomento brillaba como nunca.');
   await narrate('Una Navidad hecha de código y creatividad, sin un solo adorno comprado.');
-  await narrate('Así es el DDEC: unos protegen los sistemas, otros abren mercados, y todos trabajan para que lo que se hace aquí llegue más lejos.',{label:'Ver el final ›'});
+  await narrate('Desde la mesa, el cascanueces te volvió a guiñar el ojo. Ya tú sabes por qué.',{label:'Ver el final ›'});
   hidePanel();await sleep(500);
-  await title('Lo que se hace aquí, el mundo lo quiere.\nY aquí lo cuidamos para que siga creciendo.',4600);
+  await title('El Rey Ratón no ha vuelto.\nPero la chancleta se quedó en OTI, por si acaso. 🩴',4600);
   await title(`${state.name}, gracias por defender la Navidad del DDEC.`,3600);
   await receipt();
   stopP(6);
@@ -763,7 +767,7 @@ async function start(){
   await scene1();await scene2();await scene3();await scene4();await scene5();
 }
 $('#snd').onclick=()=>{A.init();A.mute()};
-$('#restart').onclick=()=>{A.stopAll();$('#receipt').classList.remove('on','done');$('#gift').classList.remove('on','done');$('#noise2').className='noise';$('#card').classList.remove('open');$('#scenes').innerHTML=SCENES_HTML;buildArt();fx.set(null);hidePanel();$('#hud').classList.remove('on');document.querySelectorAll('#dots i').forEach(d=>d.classList.remove('on'));wire()};
+$('#restart').onclick=()=>{$('#alert').classList.remove('on');A.stopAll();$('#receipt').classList.remove('on','done');$('#gift').classList.remove('on','done');$('#noise2').className='noise';$('#card').classList.remove('open');$('#scenes').innerHTML=SCENES_HTML;buildArt();fx.set(null);hidePanel();$('#hud').classList.remove('on');document.querySelectorAll('#dots i').forEach(d=>d.classList.remove('on'));wire()};
 buildArt();wire();
 </script>
 </body>

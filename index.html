@@ -148,7 +148,9 @@ h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(
 .card.open .inner{transform:rotateY(180deg)}
 .face{position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 .front{background:linear-gradient(90deg,transparent 46%,var(--red) 46% 54%,transparent 54%),linear-gradient(0deg,transparent 56%,var(--red) 56% 62%,transparent 62%),linear-gradient(160deg,#1E6B3A,#0A2016);border:2px solid var(--gold);overflow:hidden}
-.front>*{position:relative;z-index:1}.front .for,.front h2,.front .tap{background:rgba(10,32,22,.85);padding:2px 10px;border-radius:6px}
+.face>*{-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.front{transition:visibility 0s linear .55s}.card.open .front{visibility:hidden}
+.back{visibility:hidden;transition:visibility 0s linear .55s}.card.open .back{visibility:visible}.front .for,.front h2,.front .tap{background:rgba(10,32,22,.85);padding:2px 10px;border-radius:6px}
 .front .seal{width:74px;height:74px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f2cf7a,#b8862e);display:flex;align-items:center;justify-content:center;font-size:32px;color:#5a3b0e;margin-bottom:26px;box-shadow:0 0 30px rgba(229,188,68,.6)}
 .front .for{margin:0;letter-spacing:.3em;text-transform:uppercase;font-size:12px;color:var(--gold)}
 .front h2{font-family:'Playfair Display',serif;font-size:34px;margin:8px 0 26px}
@@ -608,7 +610,7 @@ async function scene1(){
   A.pen(1);const tag=$('#nut-tag');await tween(700,t=>tag.setAttribute('opacity',t));await sleep(600);
   await narrate('Cuando todos se fueron, te quedaste un ratito más en el atrio, mirando tu cascanueces.',{label:'Esperar a la medianoche ›'});
   hidePanel();stopP(2);await sleep(800);
-  for(let i=0;i<12;i++){A.bell(196,A.now(),5,.3);await sleep(520)}
+  {const T0=A.now()+.05;for(let i=0;i<12;i++)A.bell(196,T0+i*.36,5,.28)}await sleep(1100);
   const tr=$('#at-treeG'),scale=[392,440,493.9,587.3,659.3,784,880];
   A.whoosh(3);await tween(3200,t=>{const s=1+t*1.7;tr.setAttribute('transform',`translate(800,780) scale(${s}) translate(-800,-780)`);nut.setAttribute('transform',`translate(${600-t*60},${566+t*40}) scale(${.85+t*.5})`);tag.setAttribute('opacity',1-t);if(Math.random()<.08)A.pluck(scale[Math.floor(Math.random()*7)],A.now(),.1)});
   await narrate('A las doce en punto, el árbol empezó a crecer… y a crecer… y a crecer. ¿O eras tú quien se estaba haciendo chiquito?');
@@ -648,7 +650,10 @@ function holdShield(){return new Promise(res=>{
     fx.seek=holding?.2+p*.8:0;if(A._drone)A._drone.set(.22-p*.15);
     if(holding&&now>nt){A.pluck(scale[Math.min(scale.length-1,Math.floor(p*scale.length))],A.now(),.13);nt=now+420-250*p}
     if(p>.38&&!said){said=true;const t=document.createElement('p');t.className='ui';t.textContent='Mira: llegan refuerzos de todo el edificio. ¡No sueltes!';ptext.appendChild(t)}
-    if(p>=1){removeEventListener('keydown',kd);removeEventListener('keyup',ku);fx.seek=0;return res()}
+    if(p>=1){removeEventListener('keydown',kd);removeEventListener('keyup',ku);fx.seek=0;b.disabled=true;b.querySelector('span').textContent='¡Listo!';
+      const fin=()=>{removeEventListener('pointerup',fin);removeEventListener('keyup',fin);res()};if(!holding)return fin();
+      const t=document.createElement('p');t.className='ui';t.textContent='¡Firewall arriba! Ya puedes soltar.';ptext.appendChild(t);
+      addEventListener('pointerup',fin);addEventListener('keyup',fin);b.addEventListener('lostpointercapture',fin);return}
     requestAnimationFrame(f)};requestAnimationFrame(f)})}
 async function scene3(){
   const H=$('#dd-heroes');H.setAttribute('opacity',1);A.sparkle();A.bell(784,A.now(),2,.12);if(A._drone)A._drone.set(.08);const stopM=A.playSeq(MEL_MARCH,{bpm:132,vol:.17});
@@ -692,14 +697,14 @@ function burstAt(node,n=50){const r=node.getBoundingClientRect();fx.burst(r.left
 function tapDance(){return new Promise(res=>{
   const tapped=new Set([state.prod.k]);pact.innerHTML='';pact.className='center';
   const go=document.createElement('button');go.className='btn big';go.textContent='¡Que bailen todos! ›';go.style.display='none';pact.appendChild(go);
-  const showGo=()=>{go.style.display=''};const tm=setTimeout(showGo,7000);
+  const showGo=()=>{go.style.display=''};const tm=setTimeout(showGo,25000);
   const done=()=>{clearTimeout(tm);document.querySelectorAll('.pdance').forEach(e=>e.onclick=null);res()};
   go.onclick=()=>{A.sparkle();done()};
   document.querySelectorAll('.pdance').forEach(e=>{const p=PRODUCTS.find(x=>x.k===e.dataset.k);e.onclick=()=>{
     e.classList.remove('tap');void e.getBBox();e.classList.add('tap');setTimeout(()=>{e.classList.remove('tap');e.classList.add('on');if(DSTYLE[p.k])e.classList.add(DSTYLE[p.k])},700);
     spotOn(p.k);playMotif(p.motif);burstAt(e,40);
-    const old=ptext.querySelector('.tapline');if(old)old.remove();const t=document.createElement('p');t.className='ui tapline';t.textContent=p.tap;ptext.appendChild(t);
-    tapped.add(p.k);if(tapped.size>=2)showGo();if(tapped.size>=4)setTimeout(done,1600)}})})}
+    ptext.querySelectorAll('.tapline').forEach(o=>o.remove());const t=document.createElement('p');t.className='ui tapline';t.textContent=p.tap;ptext.appendChild(t);
+    tapped.add(p.k);const left=4-tapped.size;const c=document.createElement('p');c.className='ui tapline';c.style.opacity=.7;c.textContent=left?`Faltan ${left}.`:'¡Ya bailan todos!';ptext.appendChild(c);if(left<=0)setTimeout(done,1600)}})})}
 async function scene4(){
   goTo('s6',4);fx.set('gold');
   const gg=$('#pt-guests');if(!gg.childElementCount){[[150,'Japón'],[232,'España'],[668,'Europa'],[758,'La diáspora']].forEach(([x,n],i)=>{const g=el('g',{class:'pf',style:`animation-delay:${(i*.15).toFixed(2)}s`},gg);figure(g,x,78,i%2,i%2==0,470,'#2a1a10');const t=el('text',{x,y:376,'text-anchor':'middle','font-family':'Nunito Sans','font-weight':800,'font-size':12,fill:'#fff3c4'},gg);t.textContent=n})}

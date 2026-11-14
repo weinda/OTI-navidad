@@ -48,6 +48,31 @@ h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(
 #alert{position:fixed;top:clamp(54px,9vh,90px);left:0;right:0;text-align:center;z-index:16;font-family:'VT323',monospace;font-size:clamp(26px,4.4vw,46px);color:#ff5a6a;text-shadow:2px 2px 0 rgba(0,229,255,.6),0 0 18px rgba(255,40,60,.6);opacity:0;pointer-events:none;transition:opacity .6s}
 #alert.on{opacity:1;animation:gl 1.4s steps(1) infinite}
 #dd-parranda{filter:drop-shadow(0 0 6px rgba(255,214,120,.55))}
+#jury{position:fixed;inset:0;z-index:29;overflow-y:auto;-webkit-overflow-scrolling:touch;background:rgba(4,18,11,.9);opacity:0;pointer-events:none;transition:opacity .9s}
+#jury.on{opacity:1;pointer-events:auto}
+#jury .jw{max-width:520px;margin:0 auto;padding:26px 20px 40px;color:var(--cream);font-family:'Nunito Sans',system-ui,sans-serif}
+#jury .stripe{height:6px;border-radius:3px;background:repeating-linear-gradient(90deg,var(--red) 0 24px,var(--gold) 24px 30px,#2f8a4f 30px 54px,var(--gold) 54px 60px);margin-bottom:24px}
+#jury .k{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin:0 0 8px;text-align:center}
+#jury h1{font-family:'Playfair Display',serif;font-size:30px;line-height:1.15;margin:0;text-align:center;font-weight:700}
+#jury h1 em{display:block;font-style:italic;font-weight:500;color:var(--gold);font-size:21px;margin-top:6px}
+#jury .list{list-style:none;margin:22px 0 0;padding:0}
+#jury .item{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:center;padding:10px 4px;border-bottom:1px solid rgba(229,188,68,.18)}
+#jury .chk{width:30px;height:30px;border-radius:50%;border:2px solid rgba(229,188,68,.45);display:grid;place-items:center;transition:background .3s,border-color .3s,box-shadow .3s,transform .3s}
+#jury .chk svg{width:16px;height:16px}
+#jury .chk path{stroke:#fff;stroke-width:3.6;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s .1s}
+#jury .item.lit .chk{background:var(--red);border-color:var(--gold);box-shadow:0 0 16px rgba(255,90,90,.7);transform:scale(1.12)}
+#jury .item.lit .chk path{stroke-dashoffset:0}
+#jury .crit{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;opacity:.55;transition:opacity .3s}
+#jury .item.lit .crit{opacity:1}#jury .how{opacity:.45;transition:opacity .3s}#jury .item.lit .how{opacity:1}
+#jury .how{display:block;font-family:'Playfair Display',serif;font-style:italic;font-size:17px;line-height:1.3;margin-top:2px}
+#jury .stamp{margin:24px auto 0;width:max-content;transform:rotate(-7deg) scale(2.2);opacity:0;transition:transform .45s cubic-bezier(.3,1.6,.5,1),opacity .3s;border:3px solid var(--red);color:#ff5a6a;border-radius:10px;padding:10px 18px;text-align:center;font-family:'Playfair Display',serif;background:rgba(40,0,8,.35)}
+#jury.stamped .stamp{transform:rotate(-7deg) scale(1);opacity:1}
+#jury .stamp b{display:block;font-size:24px;letter-spacing:.12em}
+#jury .stamp small{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#ff8a95;font-weight:700}
+#jury .btn{display:block;margin:28px auto 0;opacity:0;transition:opacity .8s}#jury.stamped .btn{opacity:1}
+#toast{position:fixed;left:50%;top:34%;z-index:31;transform:translate(-50%,-50%) scale(.6);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .25s;
+ background:var(--red);color:#fff;border:3px solid var(--gold);border-radius:22px;padding:18px 26px;font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(24px,6.5vw,40px);text-align:center;line-height:1.2;width:max-content;max-width:88vw;box-shadow:0 10px 50px rgba(0,0,0,.6),0 0 40px rgba(229,188,68,.5)}
+#toast.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
 /* hud */
 #hud{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;z-index:20;pointer-events:none;opacity:0;transition:opacity 1s}
 #hud.on{opacity:1}
@@ -58,6 +83,7 @@ h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(
 /* panel */
 #panel{position:fixed;left:50%;bottom:4vh;transform:translate(-50%,20px);width:min(760px,92vw);background:rgba(8,30,20,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(229,188,68,.35);border-radius:18px;padding:22px 26px 20px;z-index:15;opacity:0;pointer-events:none;transition:opacity .6s,transform .6s,border-color 1s,box-shadow 1s}
 #panel.on{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+#panel.auto::after{content:'toca para adelantar ⏩';position:absolute;right:16px;bottom:8px;font-size:11px;opacity:.45;letter-spacing:.05em}
 #ptext p{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(18px,2.3vw,24px);line-height:1.5;margin:0 0 8px;min-height:1.5em}
 #ptext p.ui{font-family:'Nunito Sans',sans-serif;font-style:normal;font-size:15px;opacity:.8}
 #pactions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:12px}
@@ -181,7 +207,7 @@ h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(
     <p class="kicker">Oficina de Tecnologías de Información · DDEC</p>
     <h1>El Cascanueces<em>versión DDEC</em></h1>
     <p class="version">Inspirado en el cuento de E. T. A. Hoffmann y el ballet de Chaikovski</p>
-    <p class="lead">Nochebuena en el edificio de Fomento. Un cascanueces hecho en Puerto Rico, un ejército de ratones y un reino donde todo es de aquí. Dura unos 5 minutos y tus decisiones cambian la historia.</p>
+    <p class="lead">Nochebuena en el edificio de Desarrollo Económico. Un cascanueces hecho en Puerto Rico, un ejército de ratones y un reino donde todo es de aquí. Dura unos 5 minutos y tus decisiones cambian la historia.</p>
     <button class="btn big" id="start">Comenzar</button>
     <p class="small">🔊 Mejor con sonido · Presupuesto de decoración: $0.00</p>
   </div>
@@ -386,6 +412,7 @@ h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(
 <canvas id="fx"></canvas>
 <div class="noise" id="noise2"></div>
 <div id="flash"></div>
+<div id="toast"></div>
 <div id="alert">⚠ SISTEMA COMPROMETIDO</div>
 <div id="title"></div>
 <header id="hud"><div id="dots"><i></i><i></i><i></i><i></i><i></i></div><button id="snd" aria-label="Sonido">🔊</button></header>
@@ -400,7 +427,23 @@ h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(
   </g>
   <g id="wink-star" opacity="0"><path d="M52,-62 l5,13 l13,5 l-13,5 l-5,13 l-5,-13 l-13,-5 l13,-5z" fill="#fff3c4"/></g>
 </svg></div>
-<div id="receipt"><div class="paper" id="rc-paper"></div><button class="btn big" id="rc-btn">Recibir mi regalo ›</button></div>
+<div id="jury"><div class="jw">
+<div class="stripe"></div>
+<p class="k">Para el jurado</p>
+<h1>Criterios de evaluación<em>cotejados por el Cascanueces</em></h1>
+<ul class="list">
+<li class="item"><span class="chk"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><b class="crit">Creatividad y originalidad</b><span class="how">La única decoración que se vive desde el celular.</span></span></li>
+<li class="item"><span class="chk"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><b class="crit">Integración del tema</b><span class="how">Cascanueces, Rey Ratón, soldaditos y Hada. Versión boricua.</span></span></li>
+<li class="item"><span class="chk"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><b class="crit">Espíritu navideño</b><span class="how">Parranda, coquito y una chancleta. Más tradicional, imposible.</span></span></li>
+<li class="item"><span class="chk"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><b class="crit">Elementos decorativos</b><span class="how">Luces, árbol y guirnaldas. Cero bombillas fundidas.</span></span></li>
+<li class="item"><span class="chk"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><b class="crit">Aprovechamiento del espacio</b><span class="how">Usamos todo el edificio. Y cabe en tu bolsillo.</span></span></li>
+<li class="item"><span class="chk"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><b class="crit">Impacto visual</b><span class="how">Ustedes dirán. 😉</span></span></li>
+<li class="item"><span class="chk"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span><b class="crit">Integración del grupo</b><span class="how">Como todo proyecto de OTI: diseño, pruebas y go-live.</span></span></li>
+</ul>
+<div class="stamp"><b>APROBADO</b><small>por el Cascanueces</small></div>
+<button class="btn big" id="jy-btn">Recibir mi regalo ›</button>
+</div></div>
+<div id="receipt"><div class="paper" id="rc-paper"></div><button class="btn big" id="rc-btn">Continuar ›</button></div>
 <div id="gift">
   <div class="card" id="card"><div class="inner">
     <div class="face front"><div class="seal">✦</div><p class="for">Un regalo para</p><h2 id="g-name"></h2><p class="tap">Toca para abrir</p></div>
@@ -431,6 +474,7 @@ const state={name:'',value:'Esperanza'};
 const A={ctx:null,on:true,stops:[]};
 A.init=()=>{
   if(A.ctx){A.ctx.resume&&A.ctx.resume();return}
+  try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}
   const C=window.AudioContext||window.webkitAudioContext;if(!C)return;
   const c=A.ctx=new C();
   A.master=c.createGain();A.master.gain.value=.85;A.master.connect(c.destination);
@@ -447,7 +491,16 @@ A.f=(type,f,q=1)=>{const b=A.ctx.createBiquadFilter();b.type=type;b.frequency.va
 A.noise=()=>{const s=A.ctx.createBufferSource();s.buffer=A.nbuf;s.loop=true;return s};
 A.mute=()=>{A.on=!A.on;$('#snd').textContent=A.on?'🔊':'🔇';if(A.ctx)A.master.gain.setTargetAtTime(A.on?.85:0,A.now(),.05)};
 A.bell=(f=220,t=A.now(),len=5,vol=.3,out=A.bus)=>{if(!A.ctx)return;[[1,1],[2,.55],[2.76,.4],[4.07,.22],[5.4,.14]].forEach(([m,a],i)=>{const o=A.o('sine',f*m),g=A.g(0,out);o.connect(g);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol*a,t+.006);g.gain.exponentialRampToValueAtTime(.0005,t+len/(1+i*.6));o.start(t);o.stop(t+len)})};
-A.pluck=(f,t=A.now(),vol=.18,out=A.bus)=>{if(!A.ctx)return;const o1=A.o('triangle',f),o2=A.o('sawtooth',f*2.003),g2=A.g(.25),lp=A.f('lowpass',5000),g=A.g(0,out);o1.connect(lp);o2.connect(g2);g2.connect(lp);lp.connect(g);lp.frequency.setValueAtTime(5000,t);lp.frequency.exponentialRampToValueAtTime(900,t+.35);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.004);g.gain.exponentialRampToValueAtTime(.0005,t+1.1);[o1,o2].forEach(o=>{o.start(t);o.stop(t+1.2)})};
+A.ks={};A.ksBuf=n=>{if(A.ks[n])return A.ks[n];const sr=A.ctx.sampleRate,f=440*Math.pow(2,(n-69)/12),N=Math.max(2,Math.round(sr/f)),L=Math.floor(sr*1.4),b=A.ctx.createBuffer(1,L,sr),y=b.getChannelData(0);
+  let prev=0;for(let i=0;i<N;i++){const r=Math.random()*2-1;y[i]=(r+prev)*.5;prev=r}
+  for(let i=0;i<N;i++)y[i]-=y[(i+Math.round(N*.13))%N]*.6;
+  const d=.5*(n>76?.993:.9965);y[N]=y[0]*2*d;for(let i=N+1;i<L;i++)y[i]=d*(y[i-N]+y[i-N-1]);
+  let m=0;for(let i=0;i<N*2;i++)m=Math.max(m,Math.abs(y[i]));if(m)for(let i=0;i<L;i++)y[i]/=m;
+  return A.ks[n]={b,rate:f*N/sr}};
+A.pluck=(f,t=A.now(),vol=.18,out=A.bus)=>{if(!A.ctx)return;const n=Math.round(69+12*Math.log2(f/440)),k=A.ksBuf(n),cents=1200*Math.log2(f/(440*Math.pow(2,(n-69)/12)));
+  if(!A.bodies)A.bodies=new WeakMap();let body=A.bodies.get(out);if(!body){body=A.ctx.createBiquadFilter();body.type='peaking';body.frequency.value=320;body.Q.value=1.2;body.gain.value=4;const h=A.ctx.createBiquadFilter();h.type='highshelf';h.frequency.value=3200;h.gain.value=-5;body.connect(h);h.connect(out);A.bodies.set(out,body)}
+  const src=A.ctx.createBufferSource();src.buffer=k.b;src.playbackRate.value=k.rate*Math.pow(2,cents/1200);const g=A.g(0);src.connect(g);g.connect(body);
+  g.gain.setValueAtTime(vol*2.2,t);g.gain.setTargetAtTime(0,t+1.0,.12);src.start(t);src.stop(t+1.4)};
 A.strum=(ch,t,out,vol=.12)=>ch.forEach((f,i)=>A.pluck(f,t+i*.018,vol,out));
 A.guiro=(t,len,vol,out)=>{const n=A.noise(),bp=A.f('bandpass',4200,.9),g=A.g(0),env=A.g(0,out),lfo=A.o('square',62),lg=A.g(.5);n.connect(bp);bp.connect(g);g.connect(env);lfo.connect(lg);lg.connect(g.gain);g.gain.value=.5;env.gain.setValueAtTime(0,t);env.gain.linearRampToValueAtTime(vol,t+len*.3);env.gain.linearRampToValueAtTime(0,t+len);n.start(t);n.stop(t+len+.02);lfo.start(t);lfo.stop(t+len+.02)};
 A.parranda=(vol=.5,far=false)=>{
@@ -596,7 +649,23 @@ const showPanel=()=>panel.classList.add('on'),hidePanel=()=>panel.classList.remo
 async function type(text,{append=false,cls=''}={}){showPanel();if(!append)ptext.innerHTML='';pact.innerHTML='';pact.className='';const p=document.createElement('p');if(cls)p.className=cls;ptext.appendChild(p);skip=false;
   for(let i=1;i<=text.length;i++){if(skip){p.textContent=text;break}p.textContent=text.slice(0,i);await sleep(text[i-1].match(/[.,:;?!…]/)?160:24)}}
 function button(label,{cls='btn'}={}){return new Promise(res=>{const b=document.createElement('button');b.className=cls;b.textContent=label;let done=false,down=false;const go=()=>{if(done)return;done=true;A.sparkle();res()};b.addEventListener('pointerdown',()=>{down=true});b.addEventListener('pointerup',()=>{if(down)go()});b.onclick=go;pact.appendChild(b);if(matchMedia('(hover:hover)').matches)setTimeout(()=>b.focus({preventScroll:true}),50)})}
-async function narrate(text,opt={}){await type(text,opt);if(opt.wait)return sleep(opt.wait);await button(opt.label||'Continuar ›')}
+/* ---- Voz narrada: archivos voz/NN.mp3 (opcionales). Sin archivo, avanza por tiempo de lectura ---- */
+const VO={};let vsrc=null;
+function loadVO(){if(!A.ctx||loadVO.done)return;loadVO.done=1;for(let i=1;i<=22;i++){const id=String(i).padStart(2,'0');
+  fetch('voz/'+id+'.mp3').then(r=>r.ok?r.arrayBuffer():null).then(b=>b?new Promise((ok,ko)=>A.ctx.decodeAudioData(b,ok,ko)):null).then(buf=>{if(buf)VO[id]=buf}).catch(()=>{})}}
+function duck(on){if(!A.ctx)return;const t=A.now();A.bus.gain.cancelScheduledValues(t);A.bus.gain.setTargetAtTime(on?.35:1,t,.15)}
+function voice(id){return new Promise(res=>{const b=id&&VO[id];if(!b||!A.ctx||!A.on)return res(false);stopVoice();const src=A.ctx.createBufferSource();src.buffer=b;src.connect(A.master);duck(true);
+  src.onended=()=>{if(vsrc===src){vsrc=null;duck(false)}res(true)};vsrc=src;src.start()})}
+function stopVoice(){if(vsrc){const v=vsrc;vsrc=null;try{v.stop()}catch(_){}duck(false)}}
+function waitOrTap(pr){return new Promise(res=>{let done=false;panel.classList.add('auto');
+  const fin=()=>{if(done)return;done=true;panel.classList.remove('auto');panel.removeEventListener('pointerup',tap);res()};
+  const tap=e=>{if(e.target.closest('button,input,form'))return;skip=true;stopVoice();fin()};panel.addEventListener('pointerup',tap);pr.then(fin)})}
+async function narrate(text,opt={}){const has=!!(opt.vo&&VO[opt.vo]&&A.on);const vp=voice(opt.vo);
+  const est=sleep(Math.max(2400,text.length*62+1000));
+  await waitOrTap(Promise.all([type(text,opt),has?vp:est]));
+  if(opt.label){await button(opt.label);return}
+  await sleep(opt.after??450)}
+async function ask(text,vo,opt={}){voice(vo);await type(text,opt)}
 function choose(opts){return new Promise(res=>{pact.innerHTML='';pact.className='col';opts.forEach(o=>{const b=document.createElement('button');b.className='btn choice';if(o.color){const d=document.createElement('span');d.className='dot';d.style.background=o.color;d.style.color=o.color;b.appendChild(d)}b.appendChild(document.createTextNode(o.label));b.onclick=()=>{A.sparkle();res(o)};pact.appendChild(b)})})}
 function chooseMulti(opts,n){return new Promise(res=>{pact.innerHTML='';pact.className='col';const wrap=document.createElement('div');wrap.className='chips';const picked=[];const go=document.createElement('button');go.className='btn big';go.textContent='Echar al saco ›';go.disabled=true;go.style.opacity=.4;
   const sync=()=>{wrap.querySelectorAll('.chip').forEach(c=>{c.disabled=!c.classList.contains('on')&&picked.length>=n});go.disabled=picked.length<n;go.style.opacity=go.disabled?.4:1};
@@ -610,23 +679,22 @@ addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeElement.tagNam
 
 /* ================= ESCENA 1: NOCHEBUENA ================= */
 async function scene1(){
-  goTo('s3',1);fx.set('sparkle');const stopP=A.parranda(.35);await sleep(1600);
-  await narrate('Era Nochebuena en el edificio de Fomento, y en el atrio la fiesta de Navidad estaba en su mejor momento.');
-  await narrate('Entonces llegó Don Pedro, el técnico más veterano de OTI, el que arregla cualquier cosa. Traía un regalo envuelto en papel de periódico.');
-  hidePanel();A.sparkle();const nut=$('#nut');await tween(1400,t=>nut.setAttribute('opacity',t));
-  await narrate('Era un cascanueces tallado a mano en caoba, con pava y guayabera. —Hecho en Puerto Rico —dijo Don Pedro—. Y es para ti.');
-  await type('Escribe tu nombre en la etiqueta del regalo.',{cls:'ui'});
-  state.name=await askName();hidePanel();
+  goTo('s3',1);fx.set('sparkle');const stopP=A.parranda(.35);await sleep(1400);
+  await narrate('Nochebuena en el edificio de Desarrollo Económico. La fiesta de Navidad estaba en su mejor momento.',{vo:'01'});
+  await narrate('Entonces llegó Pedro Soto, el técnico más veterano de OTI, con un regalo envuelto en papel de periódico.',{vo:'02'});
+  hidePanel();A.sparkle();const nut=$('#nut');await tween(1200,t=>nut.setAttribute('opacity',t));
+  await narrate('Era un cascanueces tallado a mano, con pava y guayabera. Hecho en Puerto Rico. Y es para ti.',{vo:'03'});
+  await ask('Escribe tu nombre en la etiqueta del regalo.','04',{cls:'ui'});
+  state.name=await askName();hidePanel();stopVoice();
   $('#nut-tagtext').textContent='Para: '+state.name;await document.fonts.ready;const tt=$('#nut-tagtext');let fs=24;while(tt.getComputedTextLength()>180&&fs>12){fs-=1;tt.setAttribute('font-size',fs)}
-  A.pen(1);const tag=$('#nut-tag');await tween(700,t=>tag.setAttribute('opacity',t));await sleep(600);
-  await narrate('Cuando todos se fueron, te quedaste un ratito más en el atrio, mirando tu cascanueces.',{label:'Esperar a la medianoche ›'});
-  hidePanel();stopP(2);await sleep(800);
+  A.pen(1);const tag=$('#nut-tag');await tween(700,t=>tag.setAttribute('opacity',t));await sleep(900);
+  stopP(2);await sleep(500);
   {const T0=A.now()+.05;for(let i=0;i<12;i++)A.bell(196,T0+i*.36,5,.28)}await sleep(1100);
   const tr=$('#at-treeG'),scale=[392,440,493.9,587.3,659.3,784,880];
   A.whoosh(3);await tween(3200,t=>{const s=1+t*1.7;tr.setAttribute('transform',`translate(800,780) scale(${s}) translate(-800,-780)`);nut.setAttribute('transform',`translate(${600-t*60},${566+t*40}) scale(${.85+t*.5})`);tag.setAttribute('opacity',1-t);if(Math.random()<.08)A.pluck(scale[Math.floor(Math.random()*7)],A.now(),.1)});
-  await narrate('A las doce en punto, el árbol empezó a crecer… y a crecer… y a crecer. ¿O eras tú quien se estaba haciendo chiquito?');
+  await narrate('A las doce en punto, el árbol empezó a crecer… y a crecer. ¿O eras tú quien se estaba haciendo chiquito?',{vo:'05'});
   hidePanel();for(let i=0;i<5;i++){A.squeak();await sleep(rnd(200,450))}
-  await narrate('Y entonces, desde los cables de la oficina, se oyó: clic… clic… clic.');
+  await narrate('Y desde los cables de la oficina de OTI se oyó: clic… clic… clic.',{vo:'06',after:200});
   hidePanel();A.whoosh(1.2);await sleep(500);
 }
 
@@ -635,14 +703,13 @@ const EMAILS=[{k:'ok1',label:'📧 OTI: Mantenimiento programado del sistema est
 async function scene2(){
   goTo('s45',2);fx.set('ash');await sleep(1300);
   $('#ddec').classList.add('attack');$('#alert').classList.add('on');A.glitch();const stopSq=A.every(A.squeak,500,900);A._drone=A.drone();
-  await sleep(1200);
-  await narrate('Del fondo de los cables salió un ejército de ratones. Pero no eran ratones cualquiera: eran ratones de computadora, con el cable de rabo.');
-  const k=$('#dd-king');k.setAttribute('opacity',1);A.glitch();
-  await narrate('Y detrás de ellos, con su corona torcida, llegó el Rey Ratón: el rey de los virus, los hackers y los correos falsos. Quería apagar el DDEC en plena Navidad.');
-  await type('Los ratones llenaron los buzones de correo. Uno de estos mensajes es una trampa. ¿Cuál es?');
-  const c=await choose(EMAILS);
-  if(c.k==='phish'){A.sparkle();A.bell(1046.5,A.now(),2,.1);await narrate('¡Lo pillaste! Un dominio raro, mucha prisa y dinero fácil: las tres señales de un correo falso. El Rey Ratón se puso furioso.')}
-  else{await narrate('¡Ay, ese era de verdad! La trampa era la del bono: un dominio raro, mucha prisa y dinero fácil. Son las tres señales de un correo falso. Por suerte, todavía estamos a tiempo.')}
+  await sleep(1000);setTimeout(()=>{$('#dd-king').setAttribute('opacity',1);A.glitch()},2600);
+  await narrate('Salió un ejército de ratones de computadora, con el cable de rabo. Y detrás, con su corona torcida, el Rey Ratón: el rey de los virus y los correos falsos.',{vo:'07'});
+  $('#dd-king').setAttribute('opacity',1);
+  await ask('Los ratones llenaron los buzones. Uno de estos mensajes es una trampa. ¿Cuál es?','08');
+  const c=await choose(EMAILS);stopVoice();
+  if(c.k==='phish'){A.sparkle();A.bell(1046.5,A.now(),2,.1);await narrate('¡Lo pillaste! Dominio raro, mucha prisa y dinero fácil: las tres señales de un correo falso.',{vo:'09'})}
+  else{await narrate('¡Ay, ese era de verdad! La trampa era el bono: dominio raro, mucha prisa y dinero fácil.',{vo:'10'})}
   state.stopSq=stopSq;
 }
 
@@ -662,19 +729,17 @@ function holdShield(){return new Promise(res=>{
     if(holding&&now>nt){A.pluck(scale[Math.min(scale.length-1,Math.floor(p*scale.length))],A.now(),.13);nt=now+420-250*p}
     if(p>.38&&!said){said=true;const t=document.createElement('p');t.className='ui';t.textContent='Mira: llegan refuerzos de todo el edificio. ¡No sueltes!';ptext.appendChild(t)}
     if(p>=1){removeEventListener('keydown',kd);removeEventListener('keyup',ku);fx.seek=0;b.disabled=true;b.querySelector('span').textContent='¡Listo!';
-      const fin=()=>{removeEventListener('pointerup',fin);removeEventListener('keyup',fin);res()};if(!holding)return fin();
-      const t=document.createElement('p');t.className='ui';t.textContent='¡Firewall arriba! Ya puedes soltar.';ptext.appendChild(t);
+      const fin=()=>{$('#toast').classList.remove('on');removeEventListener('pointerup',fin);removeEventListener('keyup',fin);res()};if(!holding)return fin();
+      const T=$('#toast');T.textContent='¡Firewall arriba! Ya puedes soltar 👍';T.classList.add('on');
       addEventListener('pointerup',fin);addEventListener('keyup',fin);b.addEventListener('lostpointercapture',fin);return}
     requestAnimationFrame(f)};requestAnimationFrame(f)})}
 async function scene3(){
   const H=$('#dd-heroes');H.setAttribute('opacity',1);A.sparkle();A.bell(784,A.now(),2,.12);if(A._drone)A._drone.set(.08);const stopM=A.playSeq(MEL_MARCH,{bpm:132,vol:.17});
-  await narrate('Entonces tu cascanueces cobró vida. Se acomodó la pava, llamó a los soldaditos de OTI y se paró de frente al Rey Ratón.');
-  await type('Los soldaditos van a levantar el firewall alrededor del edificio.');
-  await type('Mantén presionado el botón para sostenerlo.',{append:true,cls:'ui'});
+  await narrate('Entonces tu cascanueces cobró vida y llamó a los soldaditos de OTI. ¡Mantén presionado el botón para levantar el firewall!',{vo:'11',after:0});
   stopM(1.2);if(A._drone)A._drone.set(.22);
   await holdShield();
   hidePanel();const t=fx.target();fx.burst(t.x,t.y,160);A.bell(1046.5,A.now(),2.5,.14);fx.target=null;await sleep(900);
-  await narrate('El firewall aguantó. Pero el Rey Ratón no se rendía… Así que hiciste lo que haría cualquier madre puertorriqueña.',{label:'🩴 ¡Tírale la chancleta!'});
+  await narrate('El firewall aguantó, pero el Rey Ratón no se rendía. Así que hiciste lo que haría cualquier madre puertorriqueña.',{vo:'12',label:'🩴 ¡Tírale la chancleta!'});stopVoice();
   hidePanel();
   const ch=$('#dd-chancla'),k=$('#dd-kingInner');ch.setAttribute('opacity',1);A.whoosh(.7);
   await tween(750,t=>{const x=110+t*450,y=600-Math.sin(t*Math.PI)*300-t*210;ch.setAttribute('transform',`translate(${x},${y}) rotate(${t*900})`)},t=>t);
@@ -685,58 +750,46 @@ async function scene3(){
   const T=A.now();[523.3,659.3,784,1046.5].forEach((f,i)=>A.bell(f,T+i*.2,2.5,.12));
   await sleep(800);
   const stopM2=A.playSeq(MEL_MARCH,{bpm:140,vol:.15,perc:true});
-  await narrate('¡Plaf! Ni el Rey Ratón aguanta una chancleta boricua. Los ratones salieron corriendo y las luces del DDEC volvieron a encenderse.');
+  await narrate('Ni el Rey Ratón aguanta una chancleta boricua.',{vo:'13'});
   stopM2(1.5);
   hidePanel();const W=$('#wink'),eye=$('#wink-eye'),star=$('#wink-star');W.classList.add('on');await sleep(700);
+  {const t='El cascanueces te miró y dijo: —No siempre gana el más elaborado, sino el que más horas de programación le pone.';const has=!!(VO['14']&&A.on);const vp=voice('14');
+   await waitOrTap(Promise.all([type(t),has?vp:sleep(t.length*55+800)]))}
+  await sleep(400);
   for(let i=0;i<2;i++){eye.setAttribute('opacity',1);star.setAttribute('opacity',1);A.bell(1568,A.now(),1.2,.1);A.bell(2093,A.now()+.08,1,.06);await sleep(650);eye.setAttribute('opacity',0);star.setAttribute('opacity',0);await sleep(260)}
-  eye.setAttribute('opacity',1);star.setAttribute('opacity',1);
-  await narrate('El cascanueces se volteó, te guiñó un ojo y dijo: —No siempre gana el más elaborado, sino el que más horas de programación le pone.');
+  eye.setAttribute('opacity',1);star.setAttribute('opacity',1);A.sparkle();
+  await sleep(1600);
   W.classList.remove('on');eye.setAttribute('opacity',0);star.setAttribute('opacity',0);
   hidePanel();A.whoosh(1.4);await sleep(500);
 }
 
 /* ================= ESCENA 4: EL REINO DE LO HECHO EN PUERTO RICO ================= */
 const PRODUCTS=[
- {k:'cafe',label:'☕ El café de la montaña',color:'#8a5a2b',motif:[523.3,659.3,784,659.3,880],tap:'☕ El café sacó a bailar a unos compradores que llegaron desde Japón.',resp:'El café abrió el baile con unos compradores que llegaron desde Japón. Cada vuelta olía a hacienda.',gift:n=>`${n}, abriste el baile con el café de la montaña. Que tu año tenga su aroma: fuerte, de aquí y para el mundo.`},
- {k:'ron',label:'🥃 El ron de Puerto Rico',color:'#c8862a',motif:[392,493.9,587.3,784,587.3],tap:'🥃 El ron le dio la vuelta al salón con invitados de España y de medio mundo.',resp:'El ron abrió el baile y le dio la vuelta al salón con invitados de España y de medio mundo. Por algo lo piden en tantos países.',gift:n=>`${n}, abriste el baile con el ron de Puerto Rico. Que tu año tenga motivos de sobra para brindar.`},
- {k:'choco',label:'🍫 El chocolate de hacienda',color:'#5a2e1a',motif:[440,523.3,659.3,880,659.3],tap:'🍫 El chocolate se lució en un vals con unos chocolateros de Europa.',resp:'El chocolate abrió el baile con un vals junto a unos chocolateros de Europa, que se fueron con pedidos para todo el año.',gift:n=>`${n}, abriste el baile con el chocolate de hacienda. Que tu año sea así de dulce, y hecho aquí.`},
- {k:'coquito',label:'🥥 El coquito',color:'#2f6b45',motif:[587.3,698.5,880,1046.5,880],tap:'🥥 El coquito bailó con la diáspora, que vino desde Orlando, Nueva York y Chicago.',resp:'El coquito abrió el baile con la diáspora, que vino desde Orlando, Nueva York y Chicago buscando el sabor de casa.',gift:n=>`${n}, abriste el baile con el coquito. Que tu año sepa a casa, estés donde estés.`}];
+ {k:'cafe',label:'☕ El café de la montaña',color:'#8a5a2b',motif:[523.3,659.3,784,659.3,880],tap:'☕ El café sacó a bailar a unos compradores que llegaron desde Japón.',resp:'El café abrió el baile con unos compradores de Japón.',gift:n=>`${n}, abriste el baile con el café de la montaña. Que tu año tenga su aroma: fuerte, de aquí y para el mundo.`},
+ {k:'ron',label:'🥃 El ron de Puerto Rico',color:'#c8862a',motif:[392,493.9,587.3,784,587.3],tap:'🥃 El ron le dio la vuelta al salón con invitados de España y de medio mundo.',resp:'El ron le dio la vuelta al salón con invitados de España y de medio mundo.',gift:n=>`${n}, abriste el baile con el ron de Puerto Rico. Que tu año tenga motivos de sobra para brindar.`},
+ {k:'choco',label:'🍫 El chocolate de hacienda',color:'#5a2e1a',motif:[440,523.3,659.3,880,659.3],tap:'🍫 El chocolate se lució en un vals con unos chocolateros de Europa.',resp:'El chocolate se lució en un vals con chocolateros de Europa.',gift:n=>`${n}, abriste el baile con el chocolate de hacienda. Que tu año sea así de dulce, y hecho aquí.`},
+ {k:'coquito',label:'🥥 El coquito',color:'#2f6b45',motif:[587.3,698.5,880,1046.5,880],tap:'🥥 El coquito bailó con la diáspora, que vino desde Orlando, Nueva York y Chicago.',resp:'El coquito bailó con la diáspora, que vino desde Orlando, Nueva York y Chicago.',gift:n=>`${n}, abriste el baile con el coquito. Que tu año sepa a casa, estés donde estés.`}];
 const DSTYLE={cafe:'',ron:'d2',choco:'d2',coquito:'d3'};
 function playMotif(m,vol=.16){const t=A.now();m.forEach((f,i)=>A.pluck(f,t+i*.13,vol))}
 function spotOn(k){const g=$('#p-'+k).parentNode;g.querySelectorAll('.spot').forEach(e=>e.classList.add('on'))}
 function burstAt(node,n=50){const r=node.getBoundingClientRect();fx.burst(r.left+r.width/2,r.top+r.height/2,n)}
-function tapDance(){return new Promise(res=>{
-  const tapped=new Set([state.prod.k]);pact.innerHTML='';pact.className='center';
-  const go=document.createElement('button');go.className='btn big';go.textContent='¡Que bailen todos! ›';go.style.display='none';pact.appendChild(go);
-  const showGo=()=>{go.style.display=''};const tm=setTimeout(showGo,25000);
-  const done=()=>{clearTimeout(tm);document.querySelectorAll('.pdance').forEach(e=>e.onclick=null);res()};
-  go.onclick=()=>{A.sparkle();done()};
-  document.querySelectorAll('.pdance').forEach(e=>{const p=PRODUCTS.find(x=>x.k===e.dataset.k);e.onclick=()=>{
-    e.classList.remove('tap');void e.getBBox();e.classList.add('tap');setTimeout(()=>{e.classList.remove('tap');e.classList.add('on');if(DSTYLE[p.k])e.classList.add(DSTYLE[p.k])},700);
-    spotOn(p.k);playMotif(p.motif);burstAt(e,40);
-    ptext.querySelectorAll('.tapline').forEach(o=>o.remove());const t=document.createElement('p');t.className='ui tapline';t.textContent=p.tap;ptext.appendChild(t);
-    tapped.add(p.k);const left=4-tapped.size;const c=document.createElement('p');c.className='ui tapline';c.style.opacity=.7;c.textContent=left?`Faltan ${left}.`:'¡Ya bailan todos!';ptext.appendChild(c);if(left<=0)setTimeout(done,1600)}})})}
 async function scene4(){
   goTo('s6',4);fx.set('gold');
   const gg=$('#pt-guests');if(!gg.childElementCount){[[150,'Japón'],[232,'España'],[668,'Europa'],[758,'La diáspora']].forEach(([x,n],i)=>{const g=el('g',{class:'pf',style:`animation-delay:${(i*.15).toFixed(2)}s`},gg);figure(g,x,78,i%2,i%2==0,470,'#2a1a10');const t=el('text',{x,y:376,'text-anchor':'middle','font-family':'Nunito Sans','font-weight':800,'font-size':12,fill:'#fff3c4'},gg);t.textContent=n})}
-  await sleep(1600);
-  await narrate('En agradecimiento, el cascanueces te llevó al lugar más dulce que conocía: el Reino de lo Hecho en Puerto Rico.');
+  await sleep(1400);
   $('#pt-hada').setAttribute('opacity',1);A.bell(1318.5,A.now(),2.5,.1);A.bell(1568,A.now()+.15,2.5,.08);const stopS=A.playSeq(MEL_SUGAR,{bpm:76,vol:.15});
-  await narrate('Allí reinaba el Hada de la Caña, con su varita de caña de azúcar. En su palacio bailaban los productos de la isla, y habían llegado invitados de todas partes del mundo a hacer negocios.');
-  await type('¿Quién abre el baile?');
-  const p=await choose(PRODUCTS);state.prod=p;stopS(1);
+  await narrate('En agradecimiento, el cascanueces te llevó al Reino de lo Hecho en Puerto Rico, donde reina el Hada de la Caña. Llegaron invitados de todo el mundo a hacer negocios. ¿Quién abre el baile?',{vo:'15',after:0});
+  const p=await choose(PRODUCTS);state.prod=p;stopS(1);stopVoice();
   const e1=$('#p-'+p.k);spotOn(p.k);e1.classList.add('on');if(DSTYLE[p.k])e1.classList.add(DSTYLE[p.k]);playMotif(p.motif,.2);burstAt(e1,60);
   const stopP=A.parranda(.45);
-  await narrate(p.resp);
-  await type('Ahora te toca a ti: toca cada producto para sacarlo a bailar.');
-  await tapDance();
+  await narrate(p.resp,{vo:{cafe:'16',ron:'17',choco:'18',coquito:'19'}[p.k]});
   hidePanel();
+  const rest=PRODUCTS.filter(x=>x.k!==p.k);
+  for(const q of rest){const e=$('#p-'+q.k);spotOn(q.k);e.classList.add('on');if(DSTYLE[q.k])e.classList.add(DSTYLE[q.k]);playMotif(q.motif,.14);burstAt(e,40);await sleep(650)}
   $('#pt-guests').setAttribute('opacity',1);
-  document.querySelectorAll('.pdance').forEach(e=>{const k=e.dataset.k;e.classList.add('on');if(DSTYLE[k])e.classList.add(DSTYLE[k]);spotOn(k)});
   stopP(1);const h=$('#pt-hada');burstAt(h,120);const stopT=A.playSeq(MEL_TREPAK,{bpm:150,vol:.17,perc:true,loops:2});const T=A.now();[1046.5,1318.5,1568,2093].forEach((f,i)=>A.bell(f,T+i*.15,2,.07));
-  await sleep(1800);
-  await narrate('Entonces el Hada de la Caña levantó su varita, y todo el salón bailó a la vez: el café con Japón, el ron con España, el chocolate con Europa y el coquito con la diáspora.');
-  await narrate('Esa noche se cerraron más negocios que en un año entero. Porque lo que se hace aquí, el mundo lo quiere.');
+  await sleep(1200);
+  await narrate('Y el Hada levantó su varita: ¡todo el salón a bailar! Porque lo que se hace aquí, el mundo lo quiere.',{vo:'20',after:1200});
   hidePanel();stopT(2);stopP(3);await sleep(700);
 }
 
@@ -744,11 +797,16 @@ async function scene4(){
 const rrow=(a,b,w=32)=>a+' '.repeat(Math.max(1,w-a.length-b.length))+b;
 function receiptLines(){return['      RECIBO · NAVIDAD 2026','   Oficina de Tecnologías de','     Información · DDEC','-'.repeat(32),
   rrow('Cliente',state.name.slice(0,22)),rrow('Visitante','Rey Ratón'),rrow('Estatus','expulsado'),'-'.repeat(32),
-  rrow('Cascanueces','hecho en PR'),rrow('Firewall','$0.00'),rrow('Chancleta','reutilizable'),rrow('Decoraciones elaboradas','no hubo'),rrow('Creatividad digital','ilimitada'),rrow('Ahorro en decoración','100%'),rrow('Personal de OTI','poquitos'),
+  rrow('Cascanueces','hecho en PR'),rrow('Firewall','$0.00'),rrow('Chancleta','reutilizable'),rrow('Decoraciones elaboradas','no hubo'),rrow('Creatividad digital','ilimitada'),rrow('Ahorro en decoración','100%'),
   '<b>'+rrow('Espíritu navideño','FULL*')+'</b>','-'.repeat(32),rrow('TOTAL','$0.00'),'','* Cargado al 100% sin gastar','  un solo peso.']}
 async function receipt(){const r=$('#receipt'),p=$('#rc-paper');p.innerHTML='';r.classList.add('on');await sleep(700);A.printer(120,.05);
   for(const line of receiptLines()){const esc=line.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/&lt;(\/?)b>/g,'<$1b>');p.innerHTML+=esc+'\n';await sleep(280)}
   r.classList.add('done');await new Promise(res=>$('#rc-btn').onclick=()=>{A.sparkle();res()});r.classList.remove('on','done')}
+async function jury(){const J=$('#jury');J.scrollTop=0;const its=[...J.querySelectorAll('.item')];its.forEach(i=>i.classList.remove('lit'));
+  J.classList.add('on');await sleep(900);
+  for(let i=0;i<its.length;i++){its[i].classList.add('lit');A.bell(784+i*98,A.now(),.9,.07);its[i].scrollIntoView({block:'nearest',behavior:'smooth'});await sleep(520)}
+  await sleep(300);J.classList.add('stamped');A.thwack();A.sparkle();setTimeout(()=>J.scrollTo({top:J.scrollHeight,behavior:'smooth'}),300);
+  await new Promise(res=>$('#jy-btn').onclick=()=>{A.sparkle();res()});J.classList.remove('on','stamped')}
 async function scene5(){
   document.querySelectorAll('#dots i').forEach(d=>d.classList.add('on'));
   $('#dd-dome').setAttribute('opacity',0);$('#dd-king').setAttribute('opacity',0);
@@ -758,14 +816,13 @@ async function scene5(){
   const stopP=A.parranda(.6);
   const P=$('#dd-parranda');tween(7000,t=>P.setAttribute('transform',`translate(${-1100+t*1100},0)`),t=>1-Math.pow(1-t,3));
   await sleep(2600);
-  await narrate('Despertaste en el atrio con el cascanueces en las manos. ¿Fue un sueño? Quizás. Pero la chancleta seguía tirada en el piso.');
-  await narrate('Afuera amanecía, y frente al edificio de Fomento llegó una parranda con cuatro, güiro, maracas y pandero.');
-  await narrate('Una Navidad hecha de código y creatividad, sin un solo adorno comprado.');
-  await narrate('Desde la mesa, el cascanueces te volvió a guiñar el ojo. Ya tú sabes por qué.',{label:'Ver el final ›'});
+  await narrate('Despertaste en el atrio. ¿Fue un sueño? Quizás. Pero la chancleta seguía tirada en el piso.',{vo:'21'});
+  await narrate('Afuera llegó la parranda. Una Navidad hecha de código y creatividad, sin un solo adorno comprado.',{vo:'22',after:900});
   hidePanel();await sleep(500);
   await title('El Rey Ratón no ha vuelto.\nPero la chancleta se quedó en OTI, por si acaso. 🩴',4600);
   await title(`${state.name}, gracias por defender la Navidad del DDEC.`,3600);
   await receipt();
+  await jury();
   stopP(6);
   $('#g-name').textContent=state.name;const v=state.prod||PRODUCTS[0];$('#g-msg').textContent=v.gift(state.name);$('#g-bar').style.background=v.color;
   $('#gift').classList.add('on');
@@ -779,11 +836,11 @@ const SCENES_HTML=$('#scenes').innerHTML;
 $('#title').style.whiteSpace='pre-line';
 function wire(){$('#start').onclick=start}
 async function start(){
-  A.init();$('#hud').classList.add('on');
+  A.init();loadVO();$('#hud').classList.add('on');
   await scene1();await scene2();await scene3();await scene4();await scene5();
 }
 $('#snd').onclick=()=>{A.init();A.mute()};
-$('#restart').onclick=()=>{$('#alert').classList.remove('on');A.stopAll();$('#receipt').classList.remove('on','done');$('#gift').classList.remove('on','done');$('#noise2').className='noise';$('#card').classList.remove('open');$('#scenes').innerHTML=SCENES_HTML;buildArt();fx.set(null);hidePanel();$('#hud').classList.remove('on');document.querySelectorAll('#dots i').forEach(d=>d.classList.remove('on'));wire()};
+$('#restart').onclick=()=>{stopVoice();$('#alert').classList.remove('on');$('#toast').classList.remove('on');A.stopAll();$('#receipt').classList.remove('on','done');$('#jury').classList.remove('on','stamped');$('#gift').classList.remove('on','done');$('#noise2').className='noise';$('#card').classList.remove('open');$('#scenes').innerHTML=SCENES_HTML;buildArt();fx.set(null);hidePanel();$('#hud').classList.remove('on');document.querySelectorAll('#dots i').forEach(d=>d.classList.remove('on'));wire()};
 buildArt();wire();
 </script>
 </body>

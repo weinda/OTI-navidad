@@ -4951,7 +4951,7 @@ async function scene2(){
   await ask('Los ratones llenaron los buzones. Uno de estos mensajes es una trampa. ¿Cuál es?','08');
   const c=await choose(EMAILS);stopVoice();
   if(c.k==='phish'){A.sparkle();A.bell(1046.5,A.now(),2,.1);await narrate('¡Lo pillaste! Dominio raro, mucha prisa y dinero fácil: las tres señales de un correo falso.',{vo:'09'})}
-  else{await narrate('¡Ay, ese era de verdad! La trampa era el bono: dominio raro, mucha prisa y dinero fácil.',{vo:'10'})}
+  else{await narrate('¡Ay ay ay, ese era de verdad! La trampa era el bono: dominio raro, mucha prisa y dinero fácil.',{vo:'10'})}
   state.stopSq=stopSq;
 }
 
@@ -4995,7 +4995,7 @@ async function scene3(){
   await narrate('Ni el Rey Ratón aguanta una chancleta boricua.',{vo:'13'});
   stopM2(1.5);
   hidePanel();const W=$('#wink'),eye=$('#wink-eye'),star=$('#wink-star');if(T3.ok){T3.winkCloseup();$('#t3dim').classList.add('on')}else W.classList.add('on');await sleep(T3.ok?1200:700);
-  {const t='Y eel cascanueces dijo: —No siempre gana el más elaborado, sino el que más horas de programación le pone.';const has=!!(VO['14']&&A.on);const vp=voice('14');
+  {const t='Y el cascanueces dijo: —No siempre gana el más elaborado, sino el que más horas de programación le pone.';const has=!!(VO['14']&&A.on);const vp=voice('14');
    await waitOrTap(Promise.all([type(t),has?vp:sleep(t.length*55+800)]))}
   await sleep(400);
   if(T3.ok){A.bell(1568,A.now()+.15,1.2,.1);A.bell(2093,A.now()+.23,1,.06);await T3.wink();A.sparkle()}else for(let i=0;i<2;i++){eye.setAttribute('opacity',1);star.setAttribute('opacity',1);A.bell(1568,A.now(),1.2,.1);A.bell(2093,A.now()+.08,1,.06);await sleep(650);eye.setAttribute('opacity',0);star.setAttribute('opacity',0);await sleep(260)}
@@ -5028,7 +5028,7 @@ async function scene4(){
   hidePanel();
   const rest=PRODUCTS.filter(x=>x.k!==p.k);
   for(const q of rest){const e=$('#p-'+q.k);spotOn(q.k);e.classList.add('on');if(DSTYLE[q.k])e.classList.add(DSTYLE[q.k]);playMotif(q.motif,.14);burstAt(e,40);await sleep(650)}
-  $('#pt-guests').setAttribute('opacity',1);T3.guestsIn();
+  
   stopP(1);const h=$('#pt-hada');burstAt(h,120);const stopT=A.playSeq(MEL_TREPAK,{bpm:150,vol:.17,perc:true,loops:2});const T=A.now();[1046.5,1318.5,1568,2093].forEach((f,i)=>A.bell(f,T+i*.15,2,.07));
   await sleep(1200);
   await narrate('Y el Hada levantó su varita: ¡todo el salón a bailar! Porque lo que se hace aquí, el mundo lo quiere.',{vo:'20',after:1200});

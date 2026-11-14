@@ -4995,7 +4995,7 @@ async function scene3(){
   await narrate('Ni el Rey Ratón aguanta una chancleta boricua.',{vo:'13'});
   stopM2(1.5);
   hidePanel();const W=$('#wink'),eye=$('#wink-eye'),star=$('#wink-star');if(T3.ok){T3.winkCloseup();$('#t3dim').classList.add('on')}else W.classList.add('on');await sleep(T3.ok?1200:700);
-  {const t='Y el cascanueces dijo: —No siempre gana el más elaborado, sino el que más horas de programación le pone.';const has=!!(VO['14']&&A.on);const vp=voice('14');
+  {const t='Y el Cascanueces dijo: —No siempre gana el más elaborado, sino el que más horas de programación le pone.';const has=!!(VO['14']&&A.on);const vp=voice('14');
    await waitOrTap(Promise.all([type(t),has?vp:sleep(t.length*55+800)]))}
   await sleep(400);
   if(T3.ok){A.bell(1568,A.now()+.15,1.2,.1);A.bell(2093,A.now()+.23,1,.06);await T3.wink();A.sparkle()}else for(let i=0;i<2;i++){eye.setAttribute('opacity',1);star.setAttribute('opacity',1);A.bell(1568,A.now(),1.2,.1);A.bell(2093,A.now()+.08,1,.06);await sleep(650);eye.setAttribute('opacity',0);star.setAttribute('opacity',0);await sleep(260)}
@@ -5020,7 +5020,7 @@ async function scene4(){
   const gg=$('#pt-guests');if(!gg.childElementCount){[[150,'Japón'],[232,'España'],[668,'Europa'],[758,'La diáspora']].forEach(([x,n],i)=>{const g=el('g',{class:'pf',style:`animation-delay:${(i*.15).toFixed(2)}s`},gg);figure(g,x,78,i%2,i%2==0,470,'#2a1a10');const t=el('text',{x,y:376,'text-anchor':'middle','font-family':'Nunito Sans','font-weight':800,'font-size':12,fill:'#fff3c4'},gg);t.textContent=n})}
   await sleep(1400);
   $('#pt-hada').setAttribute('opacity',1);T3.hadaIn();A.bell(1318.5,A.now(),2.5,.1);A.bell(1568,A.now()+.15,2.5,.08);const stopS=A.playSeq(MEL_SUGAR,{bpm:76,vol:.15});
-  await narrate('En agradecimiento, el cascanueces te llevó al Reino de lo Hecho en Puerto Rico, donde reina el Hada de la Caña. Llegaron invitados de todo el mundo a hacer negocios. ¿Quién abre el baile?',{vo:'15',after:0});
+  await narrate('En agradecimiento, el Cascanueces te llevó al Reino de lo Hecho en Puerto Rico, donde reina el Hada de la Caña. Llegaron invitados de todo el mundo a hacer negocios. ¿Quién abre el baile?',{vo:'15',after:0});
   const p=await choose(PRODUCTS);state.prod=p;stopS(1);stopVoice();
   const e1=$('#p-'+p.k);spotOn(p.k);e1.classList.add('on');if(DSTYLE[p.k])e1.classList.add(DSTYLE[p.k]);playMotif(p.motif,.2);burstAt(e1,60);
   const stopP=A.parranda(.45);

@@ -36,7 +36,6 @@ p{font:italic clamp(16px,3.4vw,26px)/1.3 Georgia,serif;color:var(--gold);margin:
 <section class="s txt"><div class="cap"><h2>«Dañaste la pava :(»</h2><p>— Feedback, versión 9</p></div></section>
 <section class="s txt"><div class="cap"><h2>«Esa guiñada está mal.»</h2><p>— Feedback, versión 17</p></div></section>
 <section class="s txt"><div class="cap"><h2>«Eso no es una guayabera.»</h2><p>— Feedback, versión 26</p></div></section>
-<section class="s txt"><div class="cap"><h2>«Los ratones tienen que parecerse a Roy.»</h2><p>— Feedback, versión 41</p></div></section>
 <section class="s txt"><div class="cap"><h2>«Eso no es un USB.»</h2><p>— Feedback, versión 44</p></div></section>
 <section class="s txt"><div class="cap"><h2>«La risa del Rey Ratón está horrible.»</h2><p>— Feedback, versión 47</p></div></section>
 <section class="s txt"><div class="cap"><h2>«¿Es mucho pedir que sea tipo Pixar?»</h2><p>Un sábado, 3:00 p. m.</p></div></section>
@@ -53,7 +52,7 @@ p{font:italic clamp(16px,3.4vw,26px)/1.3 Georgia,serif;color:var(--gold);margin:
 <div class="bar"><i id="pb"></i></div>
 <div class="end" id="end"><button class="btn alt" id="again">↻ Ver otra vez</button><a class="btn" href="./">Volver a la historia ›</a></div>
 <script>
-const S=[...document.querySelectorAll('.s')],D=[3500,5500,5000,5000,5500,4500,5000,5000,4000,4000,4000,4000,4000,5000,5000,4000,5000,5500,7000],pb=document.getElementById('pb'),end=document.getElementById('end');
+const S=[...document.querySelectorAll('.s')],D=[3000,4300,4300,3500,4300,4300,2800,2800,2800,2800,2800,2800,2800,4300,2800,4300,4300,6000],pb=document.getElementById('pb'),end=document.getElementById('end');
 let tm,i=0;
 function show(n){clearTimeout(tm);i=n;S.forEach((s,k)=>s.classList.toggle('on',k===i));
   pb.style.transition='none';pb.style.width=(i/S.length*100)+'%';void pb.offsetWidth;pb.style.transition='width '+D[i]+'ms linear';pb.style.width=((i+1)/S.length*100)+'%';

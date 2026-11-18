@@ -22,6 +22,7 @@ p{font:italic clamp(16px,3.4vw,26px)/1.3 Georgia,serif;color:var(--gold);margin:
 .btn{font:700 16px system-ui,sans-serif;padding:13px 24px;border-radius:999px;border:2px solid var(--gold);background:var(--red);color:#fff;text-decoration:none;cursor:pointer}
 .btn.alt{background:rgba(30,107,58,.5)}
 #snd{position:fixed;top:14px;left:14px;z-index:20;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.45);color:#fff;font-size:20px;cursor:pointer}
+#go{position:fixed;inset:0;z-index:30;display:none;align-items:flex-end;justify-content:center;padding-bottom:18vh;background:rgba(0,0,0,.35)}#go.on{display:flex}
 </style></head><body>
 <div class="stage">
 <section class="s txt"><div class="cap"><h2>Así se hizo</h2><p>Un minuto de detrás de cámaras 🎬</p></div></section>
@@ -43,6 +44,7 @@ p{font:italic clamp(16px,3.4vw,26px)/1.3 Georgia,serif;color:var(--gold);margin:
 <div class="hint">toca para adelantar ⏩</div>
 <audio id="mus" src="musica/marcha.mp3" loop preload="auto"></audio>
 <button id="snd" aria-label="Sonido">🔊</button>
+<div id="go"><button class="btn">▶ Ver con música</button></div>
 <div class="bar"><i id="pb"></i></div>
 <div class="end" id="end"><button class="btn alt" id="again">↻ Ver otra vez</button><a class="btn" href="./">Volver a la historia ›</a></div>
 <script>
@@ -54,9 +56,13 @@ function show(n){clearTimeout(tm);i=n;S.forEach((s,k)=>s.classList.toggle('on',k
   end.classList.remove('on');tm=setTimeout(()=>show(i+1),D[i])}
 document.getElementById('again').onclick=e=>{e.stopPropagation();show(0)};
 document.querySelector('.stage').addEventListener('click',()=>{if(i<S.length-1)show(i+1)});
-show(0);
+S[0].classList.add('on');
 const mus=document.getElementById('mus'),snd=document.getElementById('snd');mus.volume=.55;let on=true;
 const play=()=>{if(on&&mus.paused){const p=mus.play();if(p&&p.catch)p.catch(()=>{})}};
-play();addEventListener('pointerdown',play);
+const go=document.getElementById('go');
+const start=()=>{go.classList.remove('on');show(0)};
+mus.play().then(start).catch(()=>{go.classList.add('on')});
+go.addEventListener('click',e=>{e.stopPropagation();play();start()});
+['click','touchend'].forEach(ev=>addEventListener(ev,play));
 snd.addEventListener('click',e=>{e.stopPropagation();on=!on;snd.textContent=on?'🔊':'🔇';on?play():mus.pause()});
 </script></body></html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Muro · Moderación OTI</title>
+<style>
+:root{--red:#C8102E;--gold:#E5BC44;--green:#1E6B3A;--cream:#fbf6ea}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#0a1a12;color:var(--cream);padding:20px 16px 60px}
+h1{font-size:22px;margin:0 0 4px}
+.sub{opacity:.7;font-size:14px;margin:0 0 18px}
+#login{display:flex;gap:8px;max-width:420px}
+input{flex:1;padding:12px;border-radius:10px;border:1px solid #3a5a48;background:#0f2a1d;color:var(--cream);font-size:16px}
+button{padding:10px 14px;border-radius:10px;border:1px solid var(--gold);background:transparent;color:var(--gold);font-weight:700;font-size:14px;cursor:pointer}
+button.ok{background:var(--gold);color:#2a1d08}
+button.no{border-color:#c66;color:#f99}
+.tabs{display:flex;gap:8px;margin:18px 0 12px;flex-wrap:wrap}
+.tabs button.on{background:var(--gold);color:#2a1d08}
+.m{background:#10291d;border:1px solid #24493a;border-radius:14px;padding:14px;margin:0 0 10px;max-width:640px}
+.m.aprobado{border-color:#3d8a5c}
+.m .who{font-weight:700}
+.m .when{font-size:12px;opacity:.6}
+.m .txt{margin:8px 0 12px;line-height:1.45;white-space:pre-wrap;word-break:break-word}
+.m .act{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:#2b3f35;margin-left:6px}
+.tag.aprobado{background:#2f6b45}
+#msg{opacity:.8;margin:10px 0}
+#login[hidden]{display:none}
+</style>
+</head>
+<body>
+<h1>🎄 Muro de Navidad · Moderación</h1>
+<p class="sub">Solo los mensajes aprobados aparecen en el cuento.</p>
+<form id="login"><input id="key" type="password" placeholder="Clave de administración" autocomplete="current-password"><button class="ok">Entrar</button></form>
+<div id="panel" hidden>
+  <div class="tabs"><button data-f="pendiente" class="on">Pendientes</button><button data-f="aprobado">Aprobados</button><button id="reload">↻ Actualizar</button></div>
+  <p id="msg"></p>
+  <div id="list"></div>
+</div>
+<script>
+const $=s=>document.querySelector(s);let KEY='',rows=[],filtro='pendiente';
+try{KEY=sessionStorage.getItem('muroKey')||''}catch(e){}
+async function api(method,body){const r=await fetch('/api/admin',{method,headers:{'x-admin-key':KEY,'content-type':'application/json'},body:body?JSON.stringify(body):undefined});if(r.status===401)throw new Error('401');if(!r.ok)throw new Error('err');return r.json()}
+async function load(){$('#msg').textContent='Cargando…';try{rows=await api('GET');$('#login').hidden=true;$('#panel').hidden=false;render()}catch(e){$('#msg').textContent='';if(e.message==='401'){alertBox('Clave incorrecta.');$('#login').hidden=false;$('#panel').hidden=true}else alertBox('No se pudo cargar. Revisa la conexión.')}}
+function alertBox(t){let p=$('#loginmsg');if(!p){p=document.createElement('p');p.id='loginmsg';$('#login').after(p)}p.textContent=t}
+function render(){const L=$('#list');L.innerHTML='';const v=rows.filter(r=>r.estado===filtro);
+  const np=rows.filter(r=>r.estado==='pendiente').length;document.querySelector('[data-f="pendiente"]').textContent=`Pendientes (${np})`;
+  document.querySelector('[data-f="aprobado"]').textContent=`Aprobados (${rows.length-np})`;
+  $('#msg').textContent=v.length?'':(filtro==='pendiente'?'No hay mensajes pendientes. 🎉':'Todavía no hay mensajes aprobados.');
+  v.forEach(r=>{const d=document.createElement('div');d.className='m '+r.estado;
+    const who=document.createElement('div');who.className='who';who.textContent=r.nombre;const tg=document.createElement('span');tg.className='tag '+r.estado;tg.textContent=r.estado;who.appendChild(tg);
+    const when=document.createElement('div');when.className='when';when.textContent=new Date(r.creado).toLocaleString('es-PR');
+    const t=document.createElement('div');t.className='txt';t.textContent=r.mensaje;
+    const a=document.createElement('div');a.className='act';
+    const mk=(label,cls,acc)=>{const b=document.createElement('button');b.textContent=label;if(cls)b.className=cls;b.onclick=async()=>{b.disabled=true;try{await api('POST',{id:r.id,accion:acc});if(acc==='borrar')rows=rows.filter(x=>x.id!==r.id);else r.estado=acc==='aprobar'?'aprobado':'pendiente';render()}catch(e){b.disabled=false;alertBox('No se pudo guardar.')}};a.appendChild(b)};
+    if(r.estado==='pendiente')mk('✓ Aprobar','ok','aprobar');else mk('Ocultar','', 'ocultar');
+    mk('🗑 Borrar','no','borrar');
+    d.append(who,when,t,a);L.appendChild(d)})}
+$('#login').onsubmit=e=>{e.preventDefault();KEY=$('#key').value.trim();try{sessionStorage.setItem('muroKey',KEY)}catch(e){}load()};
+document.querySelectorAll('.tabs [data-f]').forEach(b=>b.onclick=()=>{filtro=b.dataset.f;document.querySelectorAll('.tabs [data-f]').forEach(x=>x.classList.toggle('on',x===b));render()});
+$('#reload').onclick=load;
+if(KEY)load();
+</script>
+</body>
+</html>

@@ -490,14 +490,14 @@ body.three #at-treeG,body.three #nut,body.three #nut-tag,body.three #at-table,bo
     <div class="face front"><div class="seal">✦</div><p class="for">Un regalo para</p><h2 id="g-name"></h2><p class="tap">Toca para abrir</p></div>
     <div class="face back"><div class="g-bar" id="g-bar"></div><p class="g-msg" id="g-msg"></p><p class="g-call">¡Sigamos celebrando la Navidad en DDEC, PRIDCO y LRA! El Reino de lo Hecho en Puerto Rico está abierto todo el año.</p><p class="g-sign">Feliz Navidad · OTI · DDEC</p></div>
   </div></div>
-  <div class="g-foot"><div class="g-wall"><p class="g-q"><b>¿Te gustó?</b> ¡Devuélvele la felicitación a OTI! 🎄</p><p class="g-s">Celebremos juntos la Navidad.</p><button class="btn big" id="wall-open">💌 Escribir en el muro</button></div><p>Un regalo de la Oficina de Tecnologías de Información para toda la familia del DDEC. Hecho con código, creatividad y mucho espíritu navideño. ¡Feliz Navidad!</p><p style="font-size:12px;opacity:.6">Inspirado en «El cascanueces y el rey de los ratones», de E. T. A. Hoffmann (1816), y el ballet de Chaikovski.</p><a class="btn" href="detras.html" style="display:inline-block;text-decoration:none;margin:0 6px 10px">🎬 Así se hizo</a> <button class="btn" id="restart">Volver a empezar</button></div>
+  <div class="g-foot"><div class="g-wall"><p class="g-q"><b>¿Te gustó?</b> ¡Devuélvele la felicitación a OTI! 🎄</p><p class="g-s">Celebremos juntos la Navidad.</p><button class="btn big" id="wall-open">💌 Escribir en el muro</button></div><p>Un regalo de la Oficina de Tecnologías de Información para ti. Hecho con código, creatividad y mucho espíritu navideño. ¡Feliz Navidad!</p><p style="font-size:12px;opacity:.6">Inspirado en «El cascanueces y el rey de los ratones», de E. T. A. Hoffmann (1816), y el ballet de Chaikovski.</p><a class="btn" href="detras.html" style="display:inline-block;text-decoration:none;margin:0 6px 10px">🎬 Así se hizo</a> <button class="btn" id="restart">Volver a empezar</button></div>
 </div>
 <div id="wall" aria-hidden="true"><button class="w-x" id="wall-x" aria-label="Cerrar">✕</button><div class="w-in">
   <h2>Muro de Navidad 🎄</h2>
   <p class="w-sub">¡Devuélvele la felicitación a OTI! Celebremos juntos la Navidad.</p>
   <form id="w-form" autocomplete="off">
     <input id="w-name" maxlength="40" placeholder="Tu nombre" aria-label="Tu nombre">
-    <textarea id="w-text" maxlength="280" placeholder="Tu mensaje para OTI y para todo el DDEC" aria-label="Tu mensaje"></textarea>
+    <textarea id="w-text" maxlength="280" placeholder="Tu mensaje para OTI" aria-label="Tu mensaje"></textarea>
     <input class="w-hp" id="w-web" tabindex="-1" aria-hidden="true">
     <div class="w-row"><span class="w-cnt" id="w-cnt">0 / 280</span><button class="btn big" type="submit" id="w-send">Enviar</button></div>
     <p id="w-note"></p>
@@ -5140,7 +5140,7 @@ async function scene5(){
   const P=$('#dd-parranda');T3.parrandaIn();tween(7000,t=>P.setAttribute('transform',`translate(${-1100+t*1100},0)`),t=>1-Math.pow(1-t,3));
   await sleep(2600);
   await narrate('Despertaste en el atrio. ¿Fue un sueño? Quizás. Pero la chancleta seguía tirada en el piso.',{vo:'21'});
-  await narrate('Afuera llegó la parranda. Y así, con un poco de código y mucha creatividad, llegó la Navidad al DDEC.',{vo:'22',after:900});
+  await narrate('Afuera llegó la parranda. Y así, con un poco de código y mucha creatividad, celebramos la Navidad.',{vo:'22',after:900});
   hidePanel();await sleep(500);
   await title('Le ganamos la batalla al Rey Ratón.\nY la chancleta sigue en OTI, por si acaso… 🩴',4600);
   await title(`${state.name}, ¡sigamos celebrando la Navidad en DDEC, PRIDCO y LRA!`,3800);

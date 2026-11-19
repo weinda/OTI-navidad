@@ -224,6 +224,7 @@ body.three #at-treeG,body.three #nut,body.three #nut-tag,body.three #at-table,bo
 #w-form{background:rgba(251,246,234,.06);border:1px solid rgba(229,188,68,.4);border-radius:16px;padding:16px;margin:0 0 26px}
 #w-form input,#w-form textarea{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1px solid rgba(229,188,68,.35);background:rgba(0,0,0,.3);color:var(--cream);font:inherit;font-size:16px;margin:0 0 10px}
 #w-form textarea{min-height:96px;resize:vertical}
+#w-form input.locked{opacity:.85;cursor:default;background:rgba(229,188,68,.08);border-style:dashed}
 #w-form .w-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
 #w-form .w-cnt{font-size:12px;opacity:.6}
 #w-form .w-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
@@ -508,7 +509,7 @@ body.three #at-treeG,body.three #nut,body.three #nut-tag,body.three #at-table,bo
   <p class="w-sub">¡Devuélvele la felicitación a OTI! Celebremos juntos la Navidad.</p>
   <form id="w-form" autocomplete="off">
     <input id="w-name" maxlength="40" placeholder="Tu nombre" aria-label="Tu nombre">
-    <textarea id="w-text" maxlength="280" placeholder="Tu mensaje para OTI y para todo el DDEC" aria-label="Tu mensaje"></textarea>
+    <textarea id="w-text" maxlength="280" placeholder="Tu mensaje para OTI y para todos en DDEC, PRIDCO y LRA" aria-label="Tu mensaje"></textarea>
     <input class="w-hp" id="w-web" tabindex="-1" aria-hidden="true">
     <div class="w-row"><span class="w-cnt" id="w-cnt">0 / 280</span><button class="btn big" type="submit" id="w-send">Enviar</button></div>
     <p id="w-note"></p>
@@ -5164,7 +5165,7 @@ async function scene5(){
   const P=$('#dd-parranda');T3.parrandaIn();tween(7000,t=>P.setAttribute('transform',`translate(${-1100+t*1100},0)`),t=>1-Math.pow(1-t,3));
   await sleep(2600);
   await narrate('Despertaste en el atrio. ¿Fue un sueño? Quizás. Pero la chancleta seguía tirada en el piso.',{vo:'21'});
-  await narrate('Afuera llegó la parranda. Y así, con mucho espíritu navideño, celebramos todos la Navidad.',{vo:'22',after:900});
+  await narrate('Afuera llegó la parranda. Y así, con mucho espíritu Navideño, celebramos todos la Navidad.',{vo:'22',after:900});
   hidePanel();await sleep(500);
   await title('Le ganamos la batalla al Rey Ratón.\nY la chancleta sigue en OTI, por si acaso…',5600,'','img/chancleta.png');
   await title('Con un poco de código y mucha creatividad, celebramos la Navidad todos juntos. 🎄',4200);
@@ -5214,7 +5215,7 @@ async function wallLoad(){W.list.innerHTML='<p class="w-empty">Cargando mensajes
     if(!rows.length){W.list.innerHTML='<p class="w-empty">Todavía no hay mensajes. ¡Sé el primero! ✨</p>';return}
     rows.forEach(m=>{const c=document.createElement('div');c.className='w-card';const p=document.createElement('p');p.textContent=m.mensaje;const b=document.createElement('b');b.textContent='— '+m.nombre;c.append(p,b);W.list.appendChild(c)})}
   catch(e){W.list.innerHTML='<p class="w-empty">El muro está disponible en cuentodenavidadpr.com.</p>'}}
-function wallOpen(){if(state.name&&state.name!=='Familia DDEC'&&!$('#w-name').value)$('#w-name').value=state.name;W.note.textContent='';W.el.classList.add('on');W.el.setAttribute('aria-hidden','false');W.el.scrollTop=0;wallLoad()}
+function wallOpen(){const nm=$('#w-name'),has=state.name&&state.name!=='Familia DDEC';if(has){nm.value=state.name;nm.readOnly=true;nm.classList.add('locked');nm.title='Tu nombre del cuento'}else{nm.readOnly=false;nm.classList.remove('locked')}W.note.textContent='';W.el.classList.add('on');W.el.setAttribute('aria-hidden','false');W.el.scrollTop=0;wallLoad()}
 function wallClose(){W.el.classList.remove('on');W.el.setAttribute('aria-hidden','true')}
 $('#wall-open').onclick=e=>{e.stopPropagation();A.sparkle();wallOpen()};
 $('#wall-x').onclick=wallClose;

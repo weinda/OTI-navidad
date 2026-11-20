@@ -4996,9 +4996,9 @@ async function type(text,{append=false,cls=''}={}){showPanel();if(!append)ptext.
   for(let i=1;i<=text.length;i++){if(skip){p.textContent=text;break}p.textContent=text.slice(0,i);await sleep(text[i-1].match(/[.,:;?!…]/)?160:24)}}
 function button(label,{cls='btn'}={}){return new Promise(res=>{const b=document.createElement('button');b.className=cls;b.textContent=label;let done=false,down=false;const go=()=>{if(done)return;done=true;A.sparkle();res()};b.addEventListener('pointerdown',()=>{down=true});b.addEventListener('pointerup',()=>{if(down)go()});b.onclick=go;pact.appendChild(b);if(matchMedia('(hover:hover)').matches)setTimeout(()=>b.focus({preventScroll:true}),50)})}
 /* ---- Voz narrada: archivos voz/NN.mp3 (opcionales). Sin archivo, avanza por tiempo de lectura ---- */
-const VO={};let vsrc=null;
+const VO={},VOP={};let vsrc=null;
 function loadVO(){if(!A.ctx||loadVO.done)return;loadVO.done=1;fetch('voz/risa.mp3').then(r=>r.ok?r.arrayBuffer():null).then(b=>b?new Promise((ok,ko)=>A.ctx.decodeAudioData(b,ok,ko)):null).then(buf=>{if(buf)VO.risa=buf}).catch(()=>{});['hada','marcha','rusa'].forEach(n=>fetch('musica/'+n+'.mp3').then(r=>r.ok?r.arrayBuffer():null).then(b=>b?new Promise((ok,ko)=>A.ctx.decodeAudioData(b,ok,ko)):null).then(buf=>{if(buf)A.mus[n]=buf}).catch(()=>{}));for(let i=1;i<=22;i++){const id=String(i).padStart(2,'0');
-  fetch('voz/'+id+'.mp3').then(r=>r.ok?r.arrayBuffer():null).then(b=>b?new Promise((ok,ko)=>A.ctx.decodeAudioData(b,ok,ko)):null).then(buf=>{if(buf)VO[id]=buf}).catch(()=>{})}}
+  VOP[id]=fetch('voz/'+id+'.mp3').then(r=>r.ok?r.arrayBuffer():null).then(b=>b?new Promise((ok,ko)=>A.ctx.decodeAudioData(b,ok,ko)):null).then(buf=>{if(buf)VO[id]=buf}).catch(()=>{})}}
 function duck(on){if(!A.ctx)return;const t=A.now();[A.bus,A.mbus].forEach(g=>{g.gain.cancelScheduledValues(t);g.gain.setTargetAtTime(on?.35:1,t,.15)})}
 function voice(id){return new Promise(res=>{const b=id&&VO[id];if(!b||!A.ctx||!A.on)return res(false);stopVoice();const src=A.ctx.createBufferSource();src.buffer=b;src.connect(A.master);duck(true);
   src.onended=()=>{if(vsrc===src){vsrc=null;duck(false)}res(true)};vsrc=src;src.start()})}
@@ -5006,12 +5006,12 @@ function stopVoice(){if(vsrc){const v=vsrc;vsrc=null;try{v.stop()}catch(_){}duck
 function waitOrTap(pr){return new Promise(res=>{let done=false;panel.classList.add('auto');
   const fin=()=>{if(done)return;done=true;panel.classList.remove('auto');panel.removeEventListener('pointerup',tap);res()};
   const tap=e=>{if(e.target.closest('button,input,form'))return;skip=true;stopVoice();fin()};panel.addEventListener('pointerup',tap);pr.then(fin)})}
-async function narrate(text,opt={}){const has=!!(opt.vo&&VO[opt.vo]&&A.on);const vp=voice(opt.vo);
+async function narrate(text,opt={}){if(opt.vo&&!VO[opt.vo]&&VOP[opt.vo]&&A.on)await Promise.race([VOP[opt.vo],sleep(4000)]);const has=!!(opt.vo&&VO[opt.vo]&&A.on);const vp=voice(opt.vo);
   const est=sleep(Math.max(2400,text.length*62+1000));
   await waitOrTap(Promise.all([type(text,opt),has?vp:est]));
   if(opt.label){await button(opt.label);return}
   await sleep(opt.after??450)}
-async function ask(text,vo,opt={}){voice(vo);await type(text,opt)}
+async function ask(text,vo,opt={}){if(vo&&!VO[vo]&&VOP[vo]&&A.on)await Promise.race([VOP[vo],sleep(4000)]);voice(vo);await type(text,opt)}
 function choose(opts){return new Promise(res=>{pact.innerHTML='';pact.className='col';opts.forEach(o=>{const b=document.createElement('button');b.className='btn choice';if(o.color){const d=document.createElement('span');d.className='dot';d.style.background=o.color;d.style.color=o.color;b.appendChild(d)}b.appendChild(document.createTextNode(o.label));b.onclick=()=>{A.sparkle();res(o)};pact.appendChild(b)})})}
 function chooseMulti(opts,n){return new Promise(res=>{pact.innerHTML='';pact.className='col';const wrap=document.createElement('div');wrap.className='chips';const picked=[];const go=document.createElement('button');go.className='btn big';go.textContent='Echar al saco ›';go.disabled=true;go.style.opacity=.4;
   const sync=()=>{wrap.querySelectorAll('.chip').forEach(c=>{c.disabled=!c.classList.contains('on')&&picked.length>=n});go.disabled=picked.length<n;go.style.opacity=go.disabled?.4:1};
@@ -5165,7 +5165,7 @@ async function scene5(){
   const P=$('#dd-parranda');T3.parrandaIn();tween(7000,t=>P.setAttribute('transform',`translate(${-1100+t*1100},0)`),t=>1-Math.pow(1-t,3));
   await sleep(2600);
   await narrate('Despertaste en el atrio. ¿Fue un sueño? Quizás. Pero la chancleta seguía tirada en el piso.',{vo:'21'});
-  await narrate('Afuera llegó la parranda. Y así, con mucho espíritu Navideño, celebramos todos la Navidad.',{vo:'22',after:900});
+  await narrate('Afuera llegó la parranda. Y así, con un poco de código y mucha creatividad, llegó la Navidad al DDEC.',{vo:'22',after:900});
   hidePanel();await sleep(500);
   await title('Le ganamos la batalla al Rey Ratón.\nY la chancleta sigue en OTI, por si acaso…',5600,'','img/chancleta.png');
   await title('Con un poco de código y mucha creatividad, celebramos la Navidad todos juntos. 🎄',4200);

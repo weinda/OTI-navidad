@@ -5165,10 +5165,10 @@ async function scene5(){
   const P=$('#dd-parranda');T3.parrandaIn();tween(7000,t=>P.setAttribute('transform',`translate(${-1100+t*1100},0)`),t=>1-Math.pow(1-t,3));
   await sleep(2600);
   await narrate('Despertaste en el atrio. ¿Fue un sueño? Quizás. Pero la chancleta seguía tirada en el piso.',{vo:'21'});
-  await narrate('Afuera llegó la parranda. Y así, con un poco de código y mucha creatividad, llegó la Navidad al DDEC.',{vo:'22',after:900});
+  await narrate('Afuera llegó la parranda, y así, con mucho espíritu navideño, celebramos todos la Navidad.',{vo:'22',after:900});
   hidePanel();await sleep(500);
   await title('Le ganamos la batalla al Rey Ratón.\nY la chancleta sigue en OTI, por si acaso…',5600,'','img/chancleta.png');
-  await title('Y así, con mucho espíritu navideño, celebramos todos la Navidad. 🎄',4200);
+  await title('Con un poco de código y mucha creatividad, celebramos la Navidad todos juntos. 🎄',4200);
   stopP(5);let stopG=A.track('hada',MEL_SUGAR,{bpm:76,vol:.15},.5);
   $('#g-name').textContent=state.name;const v=state.prod||PRODUCTS[0];$('#g-msg').textContent=v.gift(state.name);$('#g-bar').style.background=v.color;
   $('#gift').classList.add('on');

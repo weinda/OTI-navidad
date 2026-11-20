@@ -130,7 +130,7 @@ body.three #at-treeG,body.three #nut,body.three #nut-tag,body.three #at-table,bo
 #title{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 8vw 18vh;z-index:14;pointer-events:none;font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,58px);line-height:1.2;font-weight:700;color:#fff7e2;text-shadow:0 2px 6px rgba(0,0,0,.95),0 0 26px rgba(0,0,0,.9);background:radial-gradient(ellipse at 50% 42%,rgba(4,18,11,.92) 0%,rgba(4,18,11,.8) 40%,rgba(4,18,11,.35) 70%,rgba(4,18,11,0) 90%);white-space:pre-line;opacity:0;transition:opacity 1.2s}
 #title.on{opacity:1}
 #title.withimg{flex-direction:column;gap:2.5vh}
-#title img{height:min(40vh,360px);width:auto;filter:drop-shadow(0 10px 22px rgba(0,0,0,.6)) drop-shadow(0 0 18px rgba(120,200,255,.35))}
+#title img{height:min(34vh,330px);width:auto;filter:drop-shadow(0 10px 22px rgba(0,0,0,.6)) drop-shadow(0 0 18px rgba(120,200,255,.35))}
 #title.withimg.on img{animation:chpop 1.1s cubic-bezier(.3,1.6,.5,1) both,chsw 2.4s ease-in-out 1.1s infinite alternate}
 @keyframes chpop{from{transform:scale(.2) rotate(-40deg);opacity:0}to{transform:none;opacity:1}}
 @keyframes chsw{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
@@ -244,6 +244,8 @@ body.three #at-treeG,body.three #nut,body.three #nut-tag,body.three #at-table,bo
   #panel.on{transform:none}
   #sdc .dc-photo{background-image:url(img/datacenter_p.jpg);background-position:center 55%}
   #title{padding-bottom:36vh;padding-bottom:36dvh}
+  #title.withimg{padding-bottom:32dvh;font-size:clamp(22px,6.4vw,30px);gap:1.6vh}
+  #title.withimg img{height:min(26dvh,220px)}
 }
 </style>
 </head>
